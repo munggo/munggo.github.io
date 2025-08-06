@@ -1,5 +1,106 @@
 // 접속 차단 스크립트
 (function() {
+    // 비밀번호 확인
+    var PASSWORD = '080218';
+    var STORAGE_KEY = 'site_auth_' + btoa(window.location.hostname);
+    
+    // 세션 스토리지에서 인증 상태 확인
+    var isAuthenticated = sessionStorage.getItem(STORAGE_KEY) === btoa(PASSWORD);
+    
+    // 비밀번호 입력 화면 표시
+    function showPasswordPrompt() {
+        document.body.innerHTML = `
+            <div id="password-container" style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                font-family: 'Noto Sans KR', sans-serif;
+            ">
+                <div style="
+                    background: white;
+                    padding: 40px;
+                    border-radius: 10px;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                    text-align: center;
+                    max-width: 400px;
+                    width: 90%;
+                ">
+                    <h2 style="margin-bottom: 30px; color: #333;">비밀번호를 입력하세요</h2>
+                    <input type="password" id="password-input" style="
+                        width: 100%;
+                        padding: 12px;
+                        font-size: 16px;
+                        border: 2px solid #ddd;
+                        border-radius: 5px;
+                        box-sizing: border-box;
+                        margin-bottom: 20px;
+                    " placeholder="비밀번호" autofocus>
+                    <button id="submit-btn" style="
+                        width: 100%;
+                        padding: 12px;
+                        font-size: 16px;
+                        background: #667eea;
+                        color: white;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        transition: background 0.3s;
+                    " onmouseover="this.style.background='#5a67d8'" onmouseout="this.style.background='#667eea'">
+                        확인
+                    </button>
+                    <div id="error-msg" style="
+                        color: #e53e3e;
+                        margin-top: 15px;
+                        display: none;
+                        font-size: 14px;
+                    ">비밀번호가 틀렸습니다</div>
+                </div>
+            </div>
+        `;
+        
+        // 엔터키 처리
+        document.getElementById('password-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+        
+        // 버튼 클릭 처리
+        document.getElementById('submit-btn').addEventListener('click', checkPassword);
+    }
+    
+    // 비밀번호 확인
+    function checkPassword() {
+        var input = document.getElementById('password-input').value;
+        if (input === PASSWORD) {
+            sessionStorage.setItem(STORAGE_KEY, btoa(PASSWORD));
+            location.reload();
+        } else {
+            document.getElementById('error-msg').style.display = 'block';
+            document.getElementById('password-input').value = '';
+            document.getElementById('password-input').focus();
+            
+            // 3초 후 에러 메시지 숨기기
+            setTimeout(function() {
+                var errorMsg = document.getElementById('error-msg');
+                if (errorMsg) errorMsg.style.display = 'none';
+            }, 3000);
+        }
+    }
+    
+    // 인증되지 않은 경우 비밀번호 입력 화면 표시
+    if (!isAuthenticated) {
+        // DOM 로드 완료 후 실행
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', showPasswordPrompt);
+        } else {
+            showPasswordPrompt();
+        }
+        return; // 나머지 보안 체크 건너뛰기
+    }
+    
     // 리퍼러 확인
     var referrer = document.referrer.toLowerCase();
     
