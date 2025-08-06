@@ -1,0 +1,49 @@
+# 검색엔진 및 봇 차단
+SetEnvIfNoCase User-Agent ".*bot.*" bad_bot
+SetEnvIfNoCase User-Agent ".*crawler.*" bad_bot
+SetEnvIfNoCase User-Agent ".*spider.*" bad_bot
+SetEnvIfNoCase User-Agent ".*scraper.*" bad_bot
+SetEnvIfNoCase User-Agent ".*curl.*" bad_bot
+SetEnvIfNoCase User-Agent ".*wget.*" bad_bot
+SetEnvIfNoCase User-Agent ".*python.*" bad_bot
+SetEnvIfNoCase User-Agent ".*googlebot.*" bad_bot
+SetEnvIfNoCase User-Agent ".*bingbot.*" bad_bot
+SetEnvIfNoCase User-Agent ".*yeti.*" bad_bot
+SetEnvIfNoCase User-Agent ".*gptbot.*" bad_bot
+SetEnvIfNoCase User-Agent ".*claude.*" bad_bot
+SetEnvIfNoCase User-Agent ".*chatgpt.*" bad_bot
+
+# 리퍼러 기반 차단
+SetEnvIfNoCase Referer "google\." bad_referer
+SetEnvIfNoCase Referer "bing\." bad_referer
+SetEnvIfNoCase Referer "yahoo\." bad_referer
+SetEnvIfNoCase Referer "naver\." bad_referer
+SetEnvIfNoCase Referer "daum\." bad_referer
+SetEnvIfNoCase Referer "openai\." bad_referer
+SetEnvIfNoCase Referer "anthropic\." bad_referer
+SetEnvIfNoCase Referer "claude\." bad_referer
+SetEnvIfNoCase Referer "chatgpt\." bad_referer
+SetEnvIfNoCase Referer "perplexity\." bad_referer
+SetEnvIfNoCase Referer "you\.com" bad_referer
+SetEnvIfNoCase Referer "poe\.com" bad_referer
+
+# 접근 거부
+<RequireAll>
+    Require all granted
+    Require not env bad_bot
+    Require not env bad_referer
+</RequireAll>
+
+# 핫링크 방지
+RewriteEngine on
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?munggo\.github\.io [NC]
+RewriteRule \.(jpg|jpeg|png|gif|ico|css|js)$ - [F,NC,L]
+
+# 디렉토리 목록 비활성화
+Options -Indexes
+
+# 특정 파일 접근 차단
+<FilesMatch "\.(env|json|md|yml|yaml|git|gitignore)$">
+    Require all denied
+</FilesMatch>
