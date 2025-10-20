@@ -1,608 +1,565 @@
 <!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="서문교 - VP of Engineering, 피트니스 테크 스타트업 개발 총괄">
+  <meta name="keywords" content="서문교, Munkyo Seo, VP of Engineering, 개발자, Python, Django, FastAPI">
+  <meta name="author" content="서문교">
 
-    <title>Munkyo Seo - Résumé</title>
+  <title>서문교 - Résumé</title>
 
-    <!-- 파비콘 추가 -->
-    <link rel="icon" href="./imgs/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="./imgs/favicon.ico" type="image/x-icon">
+  <!-- 파비콘 -->
+  <link rel="icon" href="./imgs/favicon.ico" type="image/x-icon">
 
-    <!-- Noto Sans KR-Hestia -->
-    <link rel="stylesheet" href="./css/NotoSansKR-Hestia.css">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- font-awesome -->
-    <link href="./css/font-awesome.min.css" rel="stylesheet">
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollTrigger.min.js"></script>
 
-    <!-- custom css -->
-    <link href="./css/common.css" rel="stylesheet">
-    <link href="./css/style.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- GSAP 라이브러리 추가 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollTrigger.min.js"></script>
-  </head>
-  <body>
-    <div class="resume-wrapper">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-      <!-- header -->
-      <header>
-        <h1 class="heading-container">Résumé</h1>
-        <h2 class="name-container">Munkyo Seo</h2>
-        <h3 class="job-container">Developer</h3>
-        <div class="profile-picture">
-            <img src="./imgs/202306.jpg" alt="">
-        </div>
-        <div class="contact-container">
-          <ul class="contact-list">
-            <li>
-              <a href="tel:01072020235">+82. 010. 7202. 0235</a>
-              <span><i class="fa fa-phone" aria-hidden="true"></i></span>
-            </li>
-            <li>
-              <a href="mailto:munggo@gmail.com">munggo@gmail.com</a>
-              <span><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-            </li>
-          </ul>
-        </div>
-      </header><!-- header -->
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+    }
 
-      <!-- main -->
-      <section id="main">
-        <div class="resume-item-wrapper">
+    /* 다크모드 전환 애니메이션 */
+    * {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
 
-          <!-- project -->
-          <section class="resume-item project">
-            <div class="inner">
-              <h2>보유 기술</h2>
+    /* 인쇄 스타일 */
+    @media print {
+      body {
+        background: white !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-break {
+        page-break-before: always;
+      }
+      .shadow-xl, .shadow-lg {
+        box-shadow: none !important;
+      }
+      a {
+        text-decoration: none !important;
+        color: inherit !important;
+      }
+    }
 
-              <strong>Language</strong>
-              <ul>
-                <li>
-                  <p class="detail">
-                    Python, PHP, Javascript, Solidity(Ethereum), Node.js
-                  </p>
-                </li>
-              </ul>
+    /* 커스텀 스크롤바 */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
 
-              <strong>Database</strong>
-              <ul>
-                <li>
-                  <p class="detail">
-                  MySQL, PostgreSQL, Oracle, MongoDB, Elasticsearch, Couchbase, Memcached, Redis
-                  </p>
-                </li>
-              </ul>
+    .dark ::-webkit-scrollbar-track {
+      background: #2d3748;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #4a5568;
+    }
+  </style>
 
-              <strong>Server, Infra</strong>
-              <ul>
-                <li>
-                  <p class="detail">
-                  Linux, FreeBSD, AWS, Azure, GCP
-                  </p>
-                </li>
-              </ul>
-
-              <strong>Framework</strong>
-              <ul>
-                <li>
-                  <p class="detail">
-                  Laravel, Codeigniter, Django, Flask, bootstrap, Express, jquery, PyQT
-                  </p>
-                </li>
-              </ul>
-
-              <strong>Blockchain</strong>
-              <ul>
-                <li>
-                  <p class="detail">
-                  Bitcoin or Altcoin Core, Ethereum(Solidity DAPP), Mining pools(NOMP, YIIMP, P2POOL)
-                  </p>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <!-- experince -->
-          <section class="resume-item experience">
-            <div class="inner">
-              <h2>경력사항</h2>
-              <ul>
-                <li>
-                  <h3>(주) 버핏서울</h3>
-                  <h4 class="company">VP of Engineering</h4>
-                  <span class="date">2023. 11. 23 ~ 현재</span>
-                  <p class="detail">
-                    개발조직 메니지먼트, 아키텍쳐설계, 인프라설계/관리
-                  <blockquote>
-                    Infra: AWS, Docker, PostgreSQL...<br />
-                    Server: Python, Django, FastAPI<br>
-                  </blockquote>
-                  </p>
-                  <p class="detail">
-                    프로젝트<br>
-                  <blockquote>
-				    BG 2.0 - Connected And Fitness (2024. 1분기)<br />
-                                    TB Operation Package - 그룹 운동 서비스 프랜차이즈 (2024. 06)<br />
-                  </blockquote>
-                  </p>
-                </li>
-                <li>
-                  <h3>(주)데이터뱅크</h3>
-                  <h4 class="company">VP of Engineering</h4>
-                  <span class="date">2021. 11 ~ 2023. 10</span>
-                  <p class="detail">
-                    개발조직 메니지먼트, 아키텍쳐설계, 인프라설계/관리
-                  <blockquote>
-                    Infra: AWS, Linux, Docker, PostgreSQL, Redis, Kafka<br />
-                    Server: Python, Django, FastAPI<br>
-                  </blockquote>
-                  </p>
-                  <p class="detail">
-                    프로젝트<br>
-                  <blockquote>
-				    해외 B2B - Edmissions 서비스 오픈 (2023. 09)<br />
-				    국내 B2B - 시원스쿨 서비스 오픈 (2023. 09)<br />
-				    B2B LMS 개발 (2023. 10)<br />
-				    IELTS Practice 추가, Speaking/Writing 첨삭 (2023. 06)<br />
-				    IELTS 유료화 (2023. 05)<br />
-				    Toefl Speaking/Writing 첨삭 (2023. 04)<br />
-				    Testglider Practice Renewal (2023. 01)<br />
-					Testglider iOS App (2022. 10)<br />
-					IELTS Full Test Service Open (2022. 09)<br />
-					Testglider Android App (2022. 08)<br />
-					IELTS Sectionl Test Service Open (2022. 06)<br />
-					Multi-PG Support (2022. 04)<br />
-                  </blockquote>
-                  </p>
-                </li>
-                <li>
-                  <h3>(주)에이치엠인터내셔날</h3>
-                  <h4 class="company">본부장, CTO</h4>
-                  <span class="date">2020. 12 ~ 2021. 09</span>
-                  <p class="detail">
-                    개발조직 메니지먼트, 아키텍쳐설계, 인프라설계/관리
-                  <blockquote>
-                    Infra: AWS, Linux, Nginx, Apache, MySQL, Redis, ElasticSearch, Splunk, Kafka, Fusion<br />
-                    Server: JAVA, C#, Python, Django<br>
-                  </blockquote>
-                  </p>
-                  <p class="detail">
-                    프로젝트<br>
-                  <blockquote>
-                    기존 시스템 성능개선 (MessageQueue를 사용한 비동기 처리, Redis를 이용한 컨텐츠 Cache 고도화, Elasticsearch를 이용한 컨텐츠 제공)<br>
-                    ktown4u.com 플랫폼 차세대 시스템(진행중)<br>
-                  </blockquote>
-                  </p>
-                </li>
-                <li>
-                  <h3>(주)아이오앤코코리아</h3>
-                  <h4 class="company">CTO</h4>
-                  <span class="date">2019. 04 ~ 2020. 12</span>
-                  <p class="detail">
-                    개발조직 메니지먼트, 아키텍쳐설계, 인프라설계/관리
-                    <blockquote>
-                        Infra: AWS, Linux, Nginx, Apache, MySQL, Memcached, Redis<br />
-                      Server: Python, Flask, PHP, Laravel<br>
-                    </blockquote>
-                  </p>
-                  <p class="detail">
-                    프로젝트<br>
-                    <blockquote>
-                        B2B E-Commerce 플랫폼 yesbee.com 개발 (2020.10 오픈)<br>
-                        B2C E-Commerce cindypick.com 개발 (2020.04 오픈)<br>
-                    </blockquote>
-                  </p>
-                </li>
-                <li>
-                  <h3>(주)테라핀테크</h3>
-                  <h4 class="company">수석, VP of Engineering</h4>
-                  <span class="date">2018. 06 ~ 2019. 03. 31</span>
-                  <p class="detail">
-                    개발조직 메니지먼트, 아키텍쳐설계, 인프라설계/관리
-                    <blockquote>
-                      Infra: AWS, Linux, Apache, MySQL, Memcached, Redis
-                    </blockquote>
-                  </p>
-                  <p class="detail">
-                    프로젝트<br>
-                    <blockquote>
-                        테라펀딩 플랫폼 구조개선<br>
-                        카카오페이 투자 서비스 연동<br>
-                    </blockquote>
-                  </p>
-                </li>
-                <li>
-                  <h3>(주)포잉</h3>
-                  <h4 class="company">본부장, VP of Engineering</h4>
-                  <span class="date">2015. 06 ~ 2018. 05</span>
-                  <p class="detail">
-                    본부 메니지먼트, 아키텍쳐설계, 인프라설계/관리, 웹개발, 서버개발, 유지보수
-                    <blockquote>
-                      Infra: AWS, Linux, Apache, MySQL, Memcached, Redis, Elasticsearch, MongoDB<br>
-                      Server: PHP, Laravel, Codeigniter, Ruby on Rails, Python<br>
-                      Web Front-End: Javascript, HTML, Bootstrap
-                    </blockquote>
-                  </p>
-                  <p class="detail">
-                    프로젝트<br>
-                    <blockquote>
-                        포잉 플랫폼 구조개선<br>
-                        매장전용예약<br>
-                        Poing POS<br>
-                        Poing Store<br>
-                    </blockquote>
-                  </p>
-                </li>
-                <li>
-                  <h3>(주)티몬</h3>
-                  <h4 class="company">팀장</h4>
-                  <span class="date">2011. 12 - 2014. 10</span>
-                  <p class="detail">
-                    팀 메니지먼트, 웹개발, 서버개발, 유지보수<br>
-                    <blockquote>
-                      Infra: Linux, Apache, MySQL, Memcached, Redis, Couchbase, Elasticsearch<br>
-                      Server: PHP, Codeigniter, Python, Django<br>
-                      Web Front-End: HTML, Javascript, jQuery, Bootstrap
-                    </blockquote>
-                  </p>
-                  <p class="detail">
-                    프로젝트<br>
-                    <blockquote>
-                        핵심 구조개선<br>
-                        G마켓 API 연동<br>
-                        쿠프마케팅 API 연동<br>
-                        티몬클릭 티켓 사용처리<br>
-                        LGU+ 안심번호 API 연동<br>
-                        어드민 사이트<br>
-                        Tmon API Server<br>
-                        로그 분석 및 시각화<br>
-                    </blockquote>
-                  </p>
-                </li>
-                <li>
-                  <h3>(주)아이지엠세계경영연구원</h3>
-                  <h4 class="company">선임연구원</h4>
-                  <span class="date">2009. 07 - 2011. 12</span>
-                  <p class="detail">
-                    웹개발, 서버개발, 인프라관리, 유지보수<br>
-                    <blockquote>
-                      Infra: Linux, MySQL, Apache, BIND, SVN<br>
-                      Server: PHP, Python<br>
-                      Web Front-End: HTML, Javascript, jQuery
-                    </blockquote>
-                  </p>
-                  <p class="detail">
-                    프로젝트<br>
-                    <blockquote>
-                        IGM 비즈니스 리뷰 웹진<br>
-                        Aha! CEO 웹페이지<br>
-                        CEO 대상 온라인 강의 웹페이지<br>
-                        강사 관리 시스템<br>
-                        통계 시스템<br>
-                        직원평가 시스템<br>
-                        사내 인트라넷<br>
-                    </blockquote>
-                  </p>
-                </li>
-                <li>
-                  <h3>(주)네오플</h3>
-                  <h4 class="company">선임연구원</h4>
-                  <span class="date">2007. 01 - 2009. 06</span>
-                  <p class="detail">
-                    웹개발, 서버개발, 유지보수<br>
-                    <blockquote>
-                      Infra: Linux, MySQL<br>
-                      Server: Python, Django, PHP<br>
-                      Web Front-End: HTML, Javascript, jQuery
-                    </blockquote>
-                  </p>
-                  <p class="detail">
-                    프로젝트<br>
-                    <blockquote>
-                        사내 인트라넷<br>
-                        아라드전기 홈페이지 (던전앤파이터 일본 서비스) http://www.arad.jp/<br>
-                        개발-인터넷망 간 파일 이동 서비스<br>
-                        어뷰저 모니터링 제제 시스템<br>
-                        게임 서버 패치 상태 모니터링 시스템<br>
-                    </blockquote>
-                  </p>
-                </li>
-                <li>
-                  <h3>리눅스코리아(주)</h3>
-                  <h4 class="company">주임연구원</h4>
-                  <span class="date">2004. 08 - 2006. 12</span>
-                  <p class="detail">
-                    웹개발, 서버개발, 솔루션개발, 유지보수<br>
-                    <blockquote>
-                      Infra: Redhat Linux, FreeBSD, MySQL, Oracle, PostgreSQL, Bind, Apache<br>
-                      Server: Python, PHP<br>
-                      Web Front-End: HTML, Javascript
-                    </blockquote>
-                  </p>
-                  <p class="detail">
-                    프로젝트<br>
-                    <blockquote>
-                        한국통신 KT-DMS<br>
-                        삼성네트웍스 DMS<br>
-                        하나로통신 HFC<br>
-                        두루넷 SuMS<br>
-                        유무선 통합 인증 솔루션 DynaRADIUS<br>
-                    </blockquote>
-                  </p>
-                </li>
-                <li>
-                  <h3>맥스MP3 (현 지니뮤직, Mnet.com이후 지니뮤직에 인수합병 됨)</h3>
-                  <h4 class="company">사원</h4>
-                  <span class="date">2003. 06 - 2004. 08</span>
-                  <p class="detail">
-                    웹개발, 유지보수<br>
-                    <blockquote>
-                      Infra: Linux, Apache, MySQL<br>
-                      Server: PHP<br>
-                      Web Front-End: Javascript, HTML
-                    </blockquote>
-                  </p>
-                  <p class="detail">
-                    프로젝트<br>
-                    <blockquote>
-                        웹 스트리밍 플래이어<br>
-                        미니홈피<br>
-                        아바타 몰<br>
-                        Lette Music 플래이어<br>
-                        Naver 감성 PR BGM 모듈<br>
-                    </blockquote>
-                  </p>
-                </li>
-                <li>
-                  <h3>경북인터넷방송</h3>
-                  <h4 class="company">사원</h4>
-                  <span class="date">2002. 04 - 2003. 06</span>
-                  <p class="detail">
-                    인프라구성 및 아키텍쳐설계, 웹개발, 유지보수<br>
-                    <blockquote>
-                      Infra: FreeBSD, MySQL, Apache, PowerDNS, Qmail<br>
-                      Server: PHP, Python<br>
-                      Web Front-End: Javascript, HTML
-                    </blockquote>
-                  </p>
-                  <p class="detail">
-                    프로젝트<br>
-                    <blockquote>
-                        경북인터넷방송<br>
-                        안동낚시마트 쇼핑몰<br>
-                        인터넷 비디오 대여 쇼핑몰<br>
-                    </blockquote>
-                  </p>
-                </li>
-              </ul>
-            </div>
-          </section><!-- experince -->
-
-          <!-- project -->
-          <section class="resume-item project">
-            <div class="inner">
-              <h2>프로젝트</h2>
-
-              <strong>개인 프로젝트</strong>
-              <ul>
-                <li>
-                  <h3><a href="#" target="_blank">Blockchain & CryptoCurrency</a></h3>
-                  <p class="detail">
-                        Blockchain 관련 학습 및 개발& CryptoCurrency 관련 투자 및 학습
-                    <blockquote>
-                      Mining pool 개발: 채굴을 할 수 있도록 마이닝 풀 개발(NOMP, YIIMP, P2Pool, 모니터링 자체개발)<br />
-                      Ether ERC Token 개발: Solidity<br />
-                    </blockquote>
-                  </p>
-                </li>
-
-                <li>
-                  <h3><a href="#" target="_blank">EasyMine</a></h3>
-                  <p class="detail">
-                      Proof-of-work CryptoCurrency Minier 원격 모니터링, 관리 툴
-                    <blockquote>
-                      Server: Python<br />
-                      Web Front-End: PHP, jQuery
-                    </blockquote>
-                  </p>
-                </li>
-
-                <li>
-                  <h3><a href="#" target="_blank">Mun-Z Slack Bot</a></h3>
-                  <p class="detail">
-                    Slack을 이용하는 사용자의 키워드에 반응하는 프로그램
-                    <blockquote>
-                      Server: Python
-                    </blockquote>
-                  </p>
-                </li>
-
-                <li>
-                  <h3><a href="#" target="_blank">pmyDNS</a></h3>
-                  <p class="detail">
-                    웹에서 편리하게 DNS를 관리할 수 있도록 인터페이스와 기능을 제공하는 DNS 관리 도구
-                    <blockquote>
-                      Server: PHP, Python<br />
-                      Web Front-End: Javascript
-                    </blockquote>
-                  </p>
-                </li>
-
-                <li>
-                  <h3><a href="#" target="_blank">pmyMall, pmyBoard</a></h3>
-                  <p class="detail">
-                    유연한 확장성을 지원하는 웹 게시판과 상점 입점식 쇼핑몰
-                    <blockquote>
-                      Server: PHP, MySQL<br />
-                      Web Front-End: HTML, Javascript
-                    </blockquote>
-                  </p>
-                </li>
-
-                <li>
-                  <h3><a href="#" target="_blank">IRC bot</a></h3>
-                  <p class="detail">
-                    IRC를 이용하는 사용자의 키워드에 반응하는 프로그램
-                    <blockquote>
-                      Server: Python (Twisted)
-                    </blockquote>
-                  </p>
-                </li>
-
-                <li>
-                  <h3><a href="#" target="_blank">MSN bot</a></h3>
-                  <p class="detail">
-                    MSN Messenger를 이용하는 사용자의 키워드에 반응하는 프로그램
-                    <blockquote>
-                      Server: Python (Twisted)
-                    </blockquote>
-                  </p>
-                </li>
-
-                <li>
-                  <h3><a href="#" target="_blank">pmyChat</a></h3>
-                  <p class="detail">
-                    실시간 웹 채팅 프로그램 입니다. 한때 흥행했던 세이클럽과 비슷한 웹 채팅 
-                    <blockquote>
-                      Server: IRC Server, Python (Twisted)<br>
-                      Web Front-End: ActionScript, Javascript (XMLHTTPRequest)
-                    </blockquote>
-                  </p>
-                </li>
-
-              </ul>
-            </div>
-          </section><!-- project -->
-
-          <!-- license -->
-          <section class="resume-item license">
-            <div class="inner">
-              <h2>자격증</h2>
-              <ul>
-                <li>
-                  <h3>RHCE</h3>
-                  <h4 class="organization">Redhat, No.804006630018815</h4>
-                  <span class="date">2006. 02. 03</span>
-                </li>
-
-                <li>
-                  <h3>정보처리기능사</h3>
-                  <h4 class="organization">한국산업인력공단, 05803020269E</h4>
-                  <span class="date">2005. 11. 16</span>
-                </li>
-
-                <li>
-                  <h3>정보기기운용기능사</h3>
-                  <h4 class="organization">대한상공회의소, 99402160366J</h4>
-                  <span class="date">1999. 04. 19</span>
-                </li>
-
-              </ul>
-            </div>
-          </section><!-- license -->
-
-        </div>
-      </section><!-- main -->
-
-      <!-- footer -->
-      <footer>
-          © 2020 <a href="mailto:munggo@gmail.com" target="_blank">Munkyo Seo</a>. All rights reserved.
-      </footer><!-- footer -->
-
-    </div>
-
-
-        <!-- GSAP 애니메이션 스크립트 -->
-    <script>
-        // ScrollTrigger 플러그인 등록
-        gsap.registerPlugin(ScrollTrigger);
-
-        // 헤더 텍스트 애니메이션
-        gsap.from(".heading-container", {
-            opacity: 0,
-            y: -50,
-            duration: 1,
-            ease: "power2.out"
-        });
-
-        gsap.from(".name-container", {
-            opacity: 0,
-            x: -100,
-            duration: 1.5,
-            ease: "power2.out",
-            delay: 0.5
-        });
-
-        gsap.from(".job-container", {
-            opacity: 0,
-            x: 100,
-            duration: 1.5,
-            ease: "power2.out",
-            delay: 1
-        });
-
-        gsap.from(".profile-picture img", {
-            scale: 0.8,
-            opacity: 0,
-            duration: 1.5,
-            ease: "elastic.out(1, 0.75)",
-            delay: 1.5
-        });
-
-        // 이력서 항목 페이드 인 애니메이션 제거 (중복 방지)
-
-        // 연락처 리스트 애니메이션 제거 (중복 방지)
-
-        // 특정 컨테이너 내의 li 요소들을 애니메이션하는 함수
-        function animateListItems(containerSelector) {
-            gsap.utils.toArray(`${containerSelector} ul li`).forEach((li) => {
-                gsap.from(li, {
-                    scrollTrigger: {
-                        trigger: li, // 각 li 요소를 트리거로 설정
-                        start: "top 90%", // li 요소의 상단이 뷰포트의 80% 지점에 도달할 때 애니메이션 시작
-                        toggleActions: "play none none none",
-                        once: true, // 한 번만 애니메이션 실행
-                    },
-                    opacity: 0,
-                    y: 50,
-                    duration: 1,
-                    ease: "power2.out",
-                    stagger: 0.2,
-                });
-            });
+  <script>
+    // Tailwind 설정
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            }
+          }
         }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
 
-        // 메인 이력서 섹션의 li 요소 애니메이션 적용
-        animateListItems(".resume-item-wrapper");
+  <!-- 다크모드 토글 버튼 -->
+  <button id="darkModeToggle"
+          class="no-print fixed top-6 right-6 z-50 p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
+    <i class="fas fa-moon dark:hidden text-gray-700"></i>
+    <i class="fas fa-sun hidden dark:inline text-yellow-400"></i>
+  </button>
 
-        // 추가적으로 연락처 리스트의 li 요소 애니메이션 적용 (선택 사항)
-        animateListItems(".contact-list");
+  <!-- 인쇄 버튼 -->
+  <button onclick="window.print()"
+          class="no-print fixed top-20 right-6 z-50 p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
+    <i class="fas fa-print text-gray-700 dark:text-gray-300"></i>
+  </button>
 
-                // 프로필 이미지 호버 애니메이션
-        const profileImg = document.querySelector('.profile-picture img');
+  <!-- 메인 컨테이너 -->
+  <div class="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
 
-        // 마우스를 올렸을 때 (mouseenter) 이미지 확대
-        profileImg.addEventListener('mouseenter', () => {
-            gsap.to(profileImg, {
-                scale: 2,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-        });
+    <!-- 헤더 -->
+    <header class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 mb-8 relative overflow-hidden">
+      <!-- 배경 장식 -->
+      <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full -mr-32 -mt-32"></div>
 
-        // 마우스를 뗐을 때 (mouseleave) 원래 크기로 복귀
-        profileImg.addEventListener('mouseleave', () => {
-            gsap.to(profileImg, {
-                scale: 1,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-        });
-    </script>
+      <div class="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8">
+        <!-- 프로필 이미지 -->
+        <div class="flex-shrink-0">
+          <div class="relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
+            <img src="./imgs/202306.jpg"
+                 alt="서문교 프로필 사진"
+                 class="relative w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-white dark:border-gray-700 shadow-lg transform group-hover:scale-105 transition duration-300">
+          </div>
+        </div>
 
-  </body>
+        <!-- 기본 정보 -->
+        <div class="flex-1 text-center md:text-left">
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2">
+            서문교
+            <span class="text-2xl md:text-3xl text-gray-500 dark:text-gray-400 ml-2">Munkyo Seo</span>
+          </h1>
+          <p class="text-xl text-blue-600 dark:text-blue-400 mb-6">VP of Engineering</p>
+
+          <!-- 연락처 -->
+          <div class="flex flex-wrap justify-center md:justify-start gap-4 text-gray-600 dark:text-gray-400">
+            <a href="tel:01072020235" class="flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 transition">
+              <i class="fas fa-phone"></i>
+              <span>010-7202-0235</span>
+            </a>
+            <a href="mailto:munggo@gmail.com" class="flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 transition">
+              <i class="fas fa-envelope"></i>
+              <span>munggo@gmail.com</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 보유 기술 -->
+    <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-10 mb-8">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+        <i class="fas fa-code text-blue-600"></i>
+        보유 기술
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2">
+            <i class="fas fa-laptop-code text-blue-500 text-sm"></i>
+            Language
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm">Python</span>
+            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm">PHP</span>
+            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm">JavaScript</span>
+            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm">Solidity</span>
+            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm">Node.js</span>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2">
+            <i class="fas fa-database text-green-500 text-sm"></i>
+            Database
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-sm">MySQL</span>
+            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-sm">PostgreSQL</span>
+            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-sm">MongoDB</span>
+            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-sm">Redis</span>
+            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-sm">Elasticsearch</span>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2">
+            <i class="fas fa-server text-purple-500 text-sm"></i>
+            Server & Infra
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-sm">Linux</span>
+            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-sm">AWS</span>
+            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-sm">Azure</span>
+            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-sm">GCP</span>
+            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-sm">Docker</span>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2">
+            <i class="fas fa-layer-group text-orange-500 text-sm"></i>
+            Framework
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 rounded-full text-sm">Django</span>
+            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 rounded-full text-sm">FastAPI</span>
+            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 rounded-full text-sm">Laravel</span>
+            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 rounded-full text-sm">Flask</span>
+            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 rounded-full text-sm">Express</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 경력사항 -->
+    <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-10 mb-8">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-3">
+        <i class="fas fa-briefcase text-blue-600"></i>
+        경력사항
+      </h2>
+
+      <div class="space-y-8">
+        <!-- 버핏서울 -->
+        <div class="border-l-4 border-blue-500 pl-6 hover:border-blue-600 transition-colors">
+          <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">(주) 버핏서울</h3>
+              <p class="text-blue-600 dark:text-blue-400 font-medium">VP of Engineering</p>
+            </div>
+            <span class="text-gray-500 dark:text-gray-400 text-sm mt-2 md:mt-0">2023.11 ~ 현재</span>
+          </div>
+          <p class="text-gray-700 dark:text-gray-300 mb-3">
+            개발조직 메니지먼트, 아키텍처 설계, 인프라 설계/관리
+          </p>
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 mb-3">
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2"><strong>Tech Stack:</strong></p>
+            <p class="text-sm text-gray-700 dark:text-gray-300">AWS, Docker, PostgreSQL, Python, Django, FastAPI</p>
+          </div>
+          <div class="space-y-2">
+            <p class="text-sm font-semibold text-gray-700 dark:text-gray-300">주요 프로젝트:</p>
+            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 ml-4">
+              <li>• BG 2.0 - Connected And Fitness (2024.Q1)</li>
+              <li>• TB Operation Package - 그룹 운동 서비스 프랜차이즈 (2024.06)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 데이터뱅크 -->
+        <div class="border-l-4 border-blue-500 pl-6 hover:border-blue-600 transition-colors">
+          <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">(주) 데이터뱅크</h3>
+              <p class="text-blue-600 dark:text-blue-400 font-medium">VP of Engineering</p>
+            </div>
+            <span class="text-gray-500 dark:text-gray-400 text-sm mt-2 md:mt-0">2021.11 ~ 2023.10</span>
+          </div>
+          <p class="text-gray-700 dark:text-gray-300 mb-3">
+            개발조직 메니지먼트, 아키텍처 설계, 인프라 설계/관리
+          </p>
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 mb-3">
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2"><strong>Tech Stack:</strong></p>
+            <p class="text-sm text-gray-700 dark:text-gray-300">AWS, Docker, PostgreSQL, Redis, Kafka, Python, Django, FastAPI</p>
+          </div>
+          <div class="space-y-2">
+            <p class="text-sm font-semibold text-gray-700 dark:text-gray-300">주요 프로젝트:</p>
+            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 ml-4">
+              <li>• 해외 B2B - Edmissions 서비스 오픈 (2023.09)</li>
+              <li>• 국내 B2B - 시원스쿨 서비스 오픈 (2023.09)</li>
+              <li>• B2B LMS 개발 (2023.10)</li>
+              <li>• IELTS 유료화 및 첨삭 서비스 (2023.05~06)</li>
+              <li>• Testglider iOS/Android App 출시 (2022.08~10)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 에이치엠인터내셔널 -->
+        <div class="border-l-4 border-blue-500 pl-6 hover:border-blue-600 transition-colors">
+          <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">(주) 에이치엠인터내셔널</h3>
+              <p class="text-blue-600 dark:text-blue-400 font-medium">본부장, CTO</p>
+            </div>
+            <span class="text-gray-500 dark:text-gray-400 text-sm mt-2 md:mt-0">2020.12 ~ 2021.09</span>
+          </div>
+          <p class="text-gray-700 dark:text-gray-300 mb-3">
+            개발조직 메니지먼트, 아키텍처 설계, 인프라 설계/관리
+          </p>
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 mb-3">
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2"><strong>Tech Stack:</strong></p>
+            <p class="text-sm text-gray-700 dark:text-gray-300">AWS, MySQL, Redis, ElasticSearch, Kafka, JAVA, Python, Django</p>
+          </div>
+          <div class="space-y-2">
+            <p class="text-sm font-semibold text-gray-700 dark:text-gray-300">주요 프로젝트:</p>
+            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 ml-4">
+              <li>• ktown4u.com 플랫폼 차세대 시스템</li>
+              <li>• 시스템 성능 개선 (MessageQueue, Redis Cache, ElasticSearch)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 티몬 -->
+        <div class="border-l-4 border-blue-500 pl-6 hover:border-blue-600 transition-colors">
+          <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">(주) 티몬</h3>
+              <p class="text-blue-600 dark:text-blue-400 font-medium">팀장</p>
+            </div>
+            <span class="text-gray-500 dark:text-gray-400 text-sm mt-2 md:mt-0">2011.12 ~ 2014.10</span>
+          </div>
+          <p class="text-gray-700 dark:text-gray-300 mb-3">
+            팀 메니지먼트, 웹개발, 서버개발, 유지보수
+          </p>
+          <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 mb-3">
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2"><strong>Tech Stack:</strong></p>
+            <p class="text-sm text-gray-700 dark:text-gray-300">MySQL, Redis, Couchbase, ElasticSearch, PHP, Python, Django</p>
+          </div>
+          <div class="space-y-2">
+            <p class="text-sm font-semibold text-gray-700 dark:text-gray-300">주요 프로젝트:</p>
+            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1 ml-4">
+              <li>• 핵심 구조 개선</li>
+              <li>• G마켓/쿠프마케팅 API 연동</li>
+              <li>• Tmon API Server 구축</li>
+              <li>• 로그 분석 및 시각화 시스템</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 더 보기 버튼 -->
+        <button id="showMoreBtn"
+                class="no-print w-full py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg text-gray-700 dark:text-gray-300 font-medium transition-colors">
+          <i class="fas fa-chevron-down mr-2"></i>
+          이전 경력 더보기 (7개 회사)
+        </button>
+
+        <!-- 숨겨진 이전 경력 -->
+        <div id="moreExperience" class="hidden space-y-8">
+          <!-- 아이오앤코 -->
+          <div class="border-l-4 border-gray-400 pl-6">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">(주) 아이오앤코코리아</h3>
+                <p class="text-gray-600 dark:text-gray-400 font-medium">CTO</p>
+              </div>
+              <span class="text-gray-500 dark:text-gray-400 text-sm mt-2 md:mt-0">2019.04 ~ 2020.12</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">E-Commerce 플랫폼 개발 (yesbee.com, cindypick.com)</p>
+          </div>
+
+          <!-- 테라핀테크 -->
+          <div class="border-l-4 border-gray-400 pl-6">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">(주) 테라핀테크</h3>
+                <p class="text-gray-600 dark:text-gray-400 font-medium">수석, VP of Engineering</p>
+              </div>
+              <span class="text-gray-500 dark:text-gray-400 text-sm mt-2 md:mt-0">2018.06 ~ 2019.03</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">테라펀딩 플랫폼 구조개선, 카카오페이 투자 서비스 연동</p>
+          </div>
+
+          <!-- 포잉 -->
+          <div class="border-l-4 border-gray-400 pl-6">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">(주) 포잉</h3>
+                <p class="text-gray-600 dark:text-gray-400 font-medium">본부장, VP of Engineering</p>
+              </div>
+              <span class="text-gray-500 dark:text-gray-400 text-sm mt-2 md:mt-0">2015.06 ~ 2018.05</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">포잉 플랫폼 구조개선, POS/Store 시스템 개발</p>
+          </div>
+
+          <!-- 네오플 -->
+          <div class="border-l-4 border-gray-400 pl-6">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">(주) 네오플</h3>
+                <p class="text-gray-600 dark:text-gray-400 font-medium">선임연구원</p>
+              </div>
+              <span class="text-gray-500 dark:text-gray-400 text-sm mt-2 md:mt-0">2007.01 ~ 2009.06</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">던전앤파이터 일본 서비스 홈페이지, 게임 서버 모니터링 시스템</p>
+          </div>
+
+          <!-- 리눅스코리아 -->
+          <div class="border-l-4 border-gray-400 pl-6">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">리눅스코리아(주)</h3>
+                <p class="text-gray-600 dark:text-gray-400 font-medium">주임연구원</p>
+              </div>
+              <span class="text-gray-500 dark:text-gray-400 text-sm mt-2 md:mt-0">2004.08 ~ 2006.12</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">KT-DMS, 유무선 통합 인증 솔루션 DynaRADIUS 개발</p>
+          </div>
+
+          <!-- 맥스MP3 -->
+          <div class="border-l-4 border-gray-400 pl-6">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">맥스MP3</h3>
+                <p class="text-gray-600 dark:text-gray-400 font-medium">사원</p>
+              </div>
+              <span class="text-gray-500 dark:text-gray-400 text-sm mt-2 md:mt-0">2003.06 ~ 2004.08</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">웹 스트리밍 플레이어, 미니홈피, 아바타 몰 개발</p>
+          </div>
+
+          <!-- 경북인터넷방송 -->
+          <div class="border-l-4 border-gray-400 pl-6">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">경북인터넷방송</h3>
+                <p class="text-gray-600 dark:text-gray-400 font-medium">사원</p>
+              </div>
+              <span class="text-gray-500 dark:text-gray-400 text-sm mt-2 md:mt-0">2002.04 ~ 2003.06</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">인프라 구성 및 아키텍처 설계, 쇼핑몰 개발</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 자격증 -->
+    <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-10 mb-8">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+        <i class="fas fa-certificate text-blue-600"></i>
+        자격증
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg p-6">
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">RHCE</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">Redhat</p>
+          <p class="text-xs text-gray-500 dark:text-gray-500">2006.02.03</p>
+          <p class="text-xs text-gray-400 dark:text-gray-600 mt-2">No.804006630018815</p>
+        </div>
+
+        <div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg p-6">
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">정보처리기능사</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">한국산업인력공단</p>
+          <p class="text-xs text-gray-500 dark:text-gray-500">2005.11.16</p>
+          <p class="text-xs text-gray-400 dark:text-gray-600 mt-2">05803020269E</p>
+        </div>
+
+        <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg p-6">
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">정보기기운용기능사</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">대한상공회의소</p>
+          <p class="text-xs text-gray-500 dark:text-gray-500">1999.04.19</p>
+          <p class="text-xs text-gray-400 dark:text-gray-600 mt-2">99402160366J</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="text-center text-gray-500 dark:text-gray-400 text-sm py-8">
+      <p>© 2025 <a href="mailto:munggo@gmail.com" class="hover:text-blue-600 dark:hover:text-blue-400 transition">서문교</a>. All rights reserved.</p>
+      <p class="mt-2 text-xs">Last updated: January 2025</p>
+    </footer>
+  </div>
+
+  <!-- 스크립트 -->
+  <script>
+    // 다크모드 토글
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const html = document.documentElement;
+
+    // 로컬스토리지에서 다크모드 설정 읽기
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme === 'dark' || (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      html.classList.add('dark');
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // 경력 더보기 토글
+    const showMoreBtn = document.getElementById('showMoreBtn');
+    const moreExperience = document.getElementById('moreExperience');
+
+    showMoreBtn.addEventListener('click', () => {
+      const isHidden = moreExperience.classList.contains('hidden');
+      moreExperience.classList.toggle('hidden');
+      showMoreBtn.innerHTML = isHidden
+        ? '<i class="fas fa-chevron-up mr-2"></i>이전 경력 접기'
+        : '<i class="fas fa-chevron-down mr-2"></i>이전 경력 더보기 (7개 회사)';
+    });
+
+    // GSAP 애니메이션
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 헤더 애니메이션
+    gsap.from('header', {
+      opacity: 0,
+      y: -50,
+      duration: 1,
+      ease: 'power3.out'
+    });
+
+    // 섹션별 스크롤 애니메이션
+    gsap.utils.toArray('section').forEach((section, i) => {
+      gsap.from(section, {
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+          once: true
+        },
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        ease: 'power2.out',
+        delay: i * 0.1
+      });
+    });
+
+    // 경력 아이템 애니메이션
+    gsap.utils.toArray('.border-l-4').forEach((item, i) => {
+      gsap.from(item, {
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+          once: true
+        },
+        opacity: 0,
+        x: -30,
+        duration: 0.6,
+        ease: 'power2.out',
+        delay: i * 0.05
+      });
+    });
+
+    // 스킬 태그 애니메이션
+    gsap.utils.toArray('.px-3.py-1').forEach((tag, i) => {
+      gsap.from(tag, {
+        scrollTrigger: {
+          trigger: tag,
+          start: 'top 90%',
+          toggleActions: 'play none none none',
+          once: true
+        },
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.4,
+        ease: 'back.out(1.7)',
+        delay: i * 0.02
+      });
+    });
+  </script>
+</body>
 </html>
