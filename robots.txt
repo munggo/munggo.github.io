@@ -1,32 +1,3 @@
-# 모든 검색엔진 봇 차단
+# 모든 검색엔진 봇 허용
 User-agent: *
-Disallow: /
-Crawl-delay: 86400
-
-# 구글봇 차단
-User-agent: Googlebot
-Disallow: /
-
-# 네이버봇 차단
-User-agent: Yeti
-Disallow: /
-
-# 다음봇 차단
-User-agent: Daum
-Disallow: /
-
-# 빙봇 차단
-User-agent: Bingbot
-Disallow: /
-
-# 페이스북봇 차단
-User-agent: facebookexternalhit
-Disallow: /
-
-# 카카오봇 차단
-User-agent: Kakaotalk-scrap
-Disallow: /
-
-# 트위터봇 차단
-User-agent: Twitterbot
-Disallow: /
+Allow: /
