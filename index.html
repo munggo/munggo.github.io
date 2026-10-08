@@ -500,6 +500,41 @@
         </details>
       </div>
 
+      <!-- AI 에이전트 -->
+      <div class="case" id="case-ai">
+        <div class="case-head">
+          <span class="case-title" data-i18n="case_ai_title">AI 에이전트 도입·활용</span>
+          <span class="case-period" data-i18n="case_ai_period">버핏서울 · 개인 · 2025.07 ~ 현재</span>
+        </div>
+        <p class="case-sub" data-i18n="case_ai_sub">Claude Code를 개인 도구에서 팀 표준, 제품 기능까지 넓히고 — 에이전트가 빠른 만큼 검증 장치를 함께 설계</p>
+        <ul class="case-tags" data-i18n="case_ai_tags"><li>팀 저장소 21개 표준화</li><li>사내 MCP 서버 · 도구 34개</li><li>Claude API 제품 기능</li><li>로컬 모델 TTS·STT</li></ul>
+        <details>
+          <summary><span class="detail-toggle" data-i18n="more">상세</span></summary>
+          <ol class="flow">
+            <li data-i18n="ai_f1"><b>개인</b>앱 3개 1인 개발·출시</li>
+            <li data-i18n="ai_f2"><b>팀</b>CLAUDE.md · 공통 커맨드 · MCP</li>
+            <li data-i18n="ai_f3"><b>제품</b>Claude API 기능 · 조사 에이전트</li>
+            <li data-i18n="ai_f4"><b>로컬</b>오픈 모델 음성 · 모델 비교</li>
+          </ol>
+          <dl class="deep-dive">
+            <dt data-i18n="ai_t1">팀 도입</dt>
+            <dd data-i18n="ai_d1">2025.07 주요 저장소 17개를 분석해 CLAUDE.md 작업 규칙을 표준화 — 현재 21개 저장소(팀원·PM이 직접 작성한 6개 포함). JIRA·커밋·리뷰·장애 분석 공통 커맨드 10종, PM이 만든 결과물의 배포와 PR 리뷰 체계까지 지원</dd>
+            <dt data-i18n="ai_t2">도구</dt>
+            <dd data-i18n="ai_d2">회원·예약·DB·문서를 조회하는 사내 MCP 서버(도구 34개)를 직접 개발하고, JIRA·Datadog·Postgres 등 MCP 서버 8개를 연동</dd>
+            <dt data-i18n="ai_t3">제품 기능</dt>
+            <dd data-i18n="ai_d3">러닝 수업 소개문 생성 API: 운영 데이터로 모델 5개 설정을 블라인드 평가해 Sonnet 5 채택(Opus 대비 품질 95%, 지연 42%↓). 좌표 대신 경로 형태를 넣어 지명 환각을 없애고 입력 토큰을 1/37로</dd>
+            <dt data-i18n="ai_t4">에이전트</dt>
+            <dd data-i18n="ai_d4">기술지원 요청 412건을 분석해 유형 체계를 만들고 Claude 조사 에이전트를 실채널에 적용 — SELECT 전용 DB 계정과 MCP 화이트리스트로 조사만 하는 구조, 단위 테스트 386건</dd>
+            <dt data-i18n="ai_t5">검증 설계</dt>
+            <dd data-i18n="ai_d5">로그 대신 결과 수치를 매일 확인하는 파이프라인 건강점검, AI 판정을 규칙으로 되짚는 보호 가드, "검증 없이 완료 보고 금지"를 에이전트 작업 규칙으로 강제</dd>
+            <dt data-i18n="ai_t6">로컬 AI</dt>
+            <dd data-i18n="ai_d6">Apple Silicon(MLX)에서 Qwen3-TTS·Kokoro·Whisper 등 오픈 모델을 직접 운용 — 여행 앱 음성 안내 7,000여 곳 생성·자동 검수, 학습 앱 STT·TTS. Mac Studio 기반 로컬 AI 머신으로 여러 모델을 비교 평가하고, 업무와 개인 비서를 아우르는 통합 에이전트 환경을 준비 중</dd>
+            <dt data-i18n="ai_t7">개인</dt>
+            <dd data-i18n="ai_d7">15개월째 Claude Code로 개발 — 앱 3개를 혼자 출시(2026년 커밋 700건), Blinq는 첫 커밋 51일 만에 App Store·Google Play 동시 출시</dd>
+          </dl>
+        </details>
+      </div>
+
       <!-- 운영 인프라·성능 -->
       <div class="case" id="case-perf">
         <div class="case-head">
@@ -579,7 +614,7 @@
           <li data-i18n="c1_p8">무인·현장 운영: 런포트(마포) 키오스크·출입 게이트 연동(예약 시간대 출입, 게이트 개방 시 자동 체크인), 토스 결제 단말기 연동</li>
           <li><span data-i18n="c1_p4">인프라·성능: RDS→Aurora 무중단 전환(데이터 유실 0), DB 부하 70%→10%, Redis 캐싱·Queue 분리, 주요 API 응답 60~84% 단축, Datadog 비용 58% 절감</span><a href="#case-perf" class="case-link" data-i18n="see_case">사례 보기</a></li>
           <li data-i18n="c1_p5">아키텍처: Rust 마이크로서비스 5개 구축(메시징 3·인증·이벤트 처리), 메시지·푸시·인증을 Django 모놀리스에서 분리</li>
-          <li data-i18n="c1_p10">업무 자동화·AI: 기술지원 요청 슬랙 봇(요청 412건 분석 기반 자동 분류), LLM 러닝 수업 소개문 생성 API, React Native OTA 코드 푸시 서버 자체 구축(서버리스)</li>
+          <li><span data-i18n="c1_p10">업무 자동화·AI: 기술지원 요청 슬랙 봇(요청 412건 분석 기반 자동 분류), LLM 러닝 수업 소개문 생성 API, React Native OTA 코드 푸시 서버 자체 구축(서버리스)</span><a href="#case-ai" class="case-link" data-i18n="see_case">사례 보기</a></li>
           <li>발표: <a href="https://www.couchbase.com/content/case-study-high-tech/butfitSeoul-case-study" target="_blank" data-i18n="c1_p7">Couchbase APAC Partner Connect 2025 케이스 스터디</a></li>
         </ul>
       </div>
@@ -893,7 +928,7 @@
       <div class="section-title">AI & Leadership</div>
       <div class="skills-grid">
         <span class="skill-label">AI</span>
-        <span class="skill-items" data-i18n="skill_ai">Claude Code 활용 풀스택 개발 — iOS, Android, Backend, Infra 1인 동시 개발</span>
+        <span class="skill-items" data-i18n="skill_ai">Claude Code 팀 표준 도입(저장소 21개), Claude API 제품 기능·조사 에이전트 운영, 로컬 오픈 모델(TTS·STT) 운용, 앱 3개 1인 출시</span>
         <span class="skill-label">Management</span>
         <span class="skill-items" data-i18n="skill_mgmt">최대 20명 규모 개발 조직 운영 경험, 현재 6명 팀 총괄 · 코드 리뷰, 아키텍처 의사결정, 채용</span>
         <span class="skill-label">Architecture</span>
@@ -971,6 +1006,28 @@
         pf_d3: 'RDS → Aurora: rehearsed the day before, then cut over in 1h 45m overnight with no data loss. APM agent (ddtrace) issues were resolved ahead of the cutover',
         pf_t4: 'Cost',
         pf_d4: 'Trimmed Datadog logs, APM, and dev/staging agents: $1,134 → $475 per month (about $7,900 saved per year)',
+        case_ai_title: 'AI Agents: Adoption & Practice',
+        case_ai_period: 'Butfit Seoul · Personal · 2025.07 ~ Present',
+        case_ai_sub: 'Took Claude Code from a personal tool to a team standard and into product features — designing verification in step with the speed agents bring',
+        case_ai_tags: '<li>Standardized 21 team repos</li><li>In-house MCP server · 34 tools</li><li>Claude API product features</li><li>Local models for TTS/STT</li>',
+        ai_f1: '<b>Personal</b>3 apps built and shipped solo',
+        ai_f2: '<b>Team</b>CLAUDE.md · shared commands · MCP',
+        ai_f3: '<b>Product</b>Claude API features · investigation agent',
+        ai_f4: '<b>Local</b>Open voice models · model benchmarking',
+        ai_t1: 'Team adoption',
+        ai_d1: 'In Jul 2025, analyzed 17 core repos and standardized agent working rules in CLAUDE.md — now 21 repos, including 6 written by teammates and PMs themselves. 10 shared commands for JIRA, commits, reviews, and incident analysis; extended support to deploying PM-built work and a PR review flow for PMs',
+        ai_t2: 'Tooling',
+        ai_d2: 'Built an in-house MCP server (34 tools) for members, reservations, DB, and docs, and connected 8 MCP servers including JIRA, Datadog, and Postgres',
+        ai_t3: 'Product',
+        ai_d3: 'Running-class description API: blind-evaluated 5 model configurations on production data and chose Sonnet 5 (95% of Opus quality, 42% lower latency). Feeding route shape instead of raw coordinates removed place-name hallucinations and cut input tokens to 1/37',
+        ai_t4: 'Agents',
+        ai_d4: 'Analyzed 412 tech-support requests into a request taxonomy and deployed a Claude investigation agent to the live channel — investigation-only by design, with a SELECT-only DB account and an MCP allowlist; 386 unit tests',
+        ai_t5: 'Verification',
+        ai_d5: 'Daily pipeline health checks on result counts rather than logs, guard rules that double-check AI judgments, and "never report done without verification" enforced as an agent working rule',
+        ai_t6: 'Local AI',
+        ai_d6: 'Run open models such as Qwen3-TTS, Kokoro, and Whisper on Apple Silicon (MLX) — generated and auto-checked audio guides for 7,000+ places in the travel app, plus STT/TTS for a learning app. Preparing a Mac Studio–based local AI machine to benchmark multiple models and build an integrated agent for both work and personal assistance',
+        ai_t7: 'Personal',
+        ai_d7: 'Building with Claude Code for 15 months — shipped 3 apps solo (700 commits in 2026); Blinq launched on the App Store and Google Play 51 days after its first commit',
         case_trip_period: 'Personal project · 2025 ~ Present',
         case_trip_sub: 'Location-based Korean heritage & travel app — an automated pipeline from collection to translation and delivery, run solo',
         case_trip_tags: '<li>17,011 places</li><li>10 languages</li><li>Auto-deployed twice a day</li><li>Incremental patches 69MB → under 1MB</li>',
@@ -989,7 +1046,7 @@
         skills_quote: 'Languages are just tools — what matters is what you can build.',
 
         // AI & Leadership
-        skill_ai: 'Full-stack development with Claude Code — iOS, Android, Backend, Infra simultaneously as a solo developer',
+        skill_ai: 'Brought Claude Code to the team as a standard (21 repos), ran Claude API features and an investigation agent in production, run local open models (TTS/STT), shipped 3 apps solo',
         skill_mgmt: 'Led dev orgs up to 20 engineers, currently managing a team of 6 · Code review, architecture decisions, hiring',
         skill_arch: 'Monolith → Microservices migration, Python → Rust migration design',
 
