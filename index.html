@@ -177,6 +177,30 @@
       margin-left: 4px;
     }
 
+    /* ── 상세 펼침 ── */
+    .career-projects summary { cursor: pointer; list-style: none; }
+    .career-projects summary::-webkit-details-marker { display: none; }
+    .detail-toggle {
+      font-size: 12px;
+      color: var(--fg-accent);
+      margin-left: 6px;
+      white-space: nowrap;
+    }
+    .detail-toggle::after { content: " ▾"; }
+    details[open] .detail-toggle::after { content: " ▴"; }
+    .deep-dive {
+      margin: 8px 0 6px;
+      padding: 12px 16px;
+      background: var(--bg-alt);
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 6px 12px;
+      font-size: 12.5px;
+    }
+    .deep-dive dt { color: var(--fg-muted); }
+    .deep-dive dd { color: var(--fg-secondary); }
+
     /* ── 이전 경력 (컴팩트) ── */
     .career-compact { margin-bottom: 14px; }
     .career-compact:last-child { margin-bottom: 0; }
@@ -282,6 +306,8 @@
       .career-item { margin-bottom: 16px; }
       .project-grid { gap: 12px; }
       a { color: inherit !important; }
+      .detail-toggle { display: none; }
+      .deep-dive { background: none; padding: 4px 0 0 8px; border-left: 2px solid #e5e5e5; border-radius: 0; }
     }
 
     /* ── 반응형 ── */
@@ -293,6 +319,8 @@
       .skill-label { margin-top: 8px; }
       .project-grid { grid-template-columns: 1fr; }
       .cert-grid { grid-template-columns: 1fr; }
+      .deep-dive { grid-template-columns: 1fr; gap: 0; }
+      .deep-dive dd { margin-bottom: 8px; }
     }
   </style>
 </head>
@@ -364,14 +392,29 @@
         <div class="career-desc" data-i18n="c1_desc">개발팀 6명 총괄, 20+ 서비스 아키텍처 설계 및 운영</div>
         <div class="career-stack">AWS, Docker, PostgreSQL, Couchbase, Redis/Valkey · Python, Django, FastAPI, Rust (Axum)</div>
         <ul class="career-projects">
-          <li data-i18n="c1_p1">서비스 런칭: BG 2.0, TB Operation Package, BG Web/App 3.0</li>
-          <li data-i18n="c1_p8">무인 운영: 런포트(마포) 오픈에 맞춘 체크인 키오스크·출입 게이트 연동 — 예약 시간대 기반 출입, 게이트 개방 시 자동 체크인, 스피드게이트 자동 체크아웃·초과요금 청구</li>
-          <li data-i18n="c1_p2">실시간 피트니스: CNF 대시보드 — 유산소 운동 데이터 실시간 앱/대시보드 연동, 데이터 전송량 70% 절감</li>
-          <li data-i18n="c1_p3">결제·수익화: TOSS 결제 단말기 연동, 광고 수익화 대시보드</li>
-          <li data-i18n="c1_p9">B2B 판매: 법인·단체 대량구매 쿠폰 시스템 설계·출시 — 비로그인 결제 링크, 현장 토스 단말기 결제, 장 단위 환불 산정 (백엔드·구매자 웹·스태프 웹)</li>
-          <li data-i18n="c1_p4">성능 최적화: PostgreSQL CPU 70%→10%, Redis 캐싱 및 Queue 분리</li>
-          <li data-i18n="c1_p5">아키텍처: Python→Rust 마이크로서비스 전환 (메시징, 인증, 이벤트 처리 6개 서비스)</li>
-          <li data-i18n="c1_p6">IoT: GateKeeper 출입 통제 시스템 (ESP32 펌웨어 + API + OTA) — 2개 지점 운영, 14개 지점 바이오스타 33대 대체 확산 진행 중</li>
+          <li>
+            <details>
+              <summary><span data-i18n="c1_p6">IoT: GateKeeper 자체 출입 통제 시스템 (하드웨어 + ESP32 펌웨어 + API + OTA) — 2개 지점 운영, 사우나 스피드게이트 운영 시작(2026.10), 14개 지점 바이오스타 33대 대체 확산 중</span><span class="detail-toggle" data-i18n="more">상세</span></summary>
+              <dl class="deep-dive">
+                <dt data-i18n="gk_t1">무엇을</dt>
+                <dd data-i18n="gk_d1">외산 출입기기(수프리마 바이오스타)를 대체하는 QR 출입 시스템. 멤버십 종류·사우나 예약 시간대 같은 판정 규칙을 구역별로 직접 반영</dd>
+                <dt data-i18n="gk_t2">구조</dt>
+                <dd data-i18n="gk_d2">앱 QR(AES-256-GCM, 35초 만료) → ESP32-S3가 PSRAM 회원 캐시로 즉시 판정, 캐시에 없으면 비동기 워커가 서버 재판정 — 네트워크가 끊겨도 출입 유지</dd>
+                <dt data-i18n="gk_t3">스피드게이트</dt>
+                <dd data-i18n="gk_d3">마포 사우나 입·출구, 2026.10.08 운영 시작. 입구는 체크인 전 예약자만 캐시해 즉시 개방하고 15초 뒤 캐시를 지워 재입장 차단, 출구는 서버 판정과 동시에 자동 체크아웃·초과요금 청구. 서버 장애 시 입구는 닫고 출구는 여는 비대칭 설계</dd>
+                <dt data-i18n="gk_t4">안정성</dt>
+                <dd data-i18n="gk_d4">8계층 자가 복구 워치독, OTA(SHA256 검증·버전 가드·자동 롤백), 원격 재부팅·구역 변경·시간제 개방, 하드웨어 없이 도는 단위 테스트 10개 스위트 612건</dd>
+                <dt data-i18n="gk_t5">문제 해결</dt>
+                <dd data-i18n="gk_d5">사우나 첫 태깅 허용률 91.8%→45.3% 회귀를 이벤트 데이터로 추적해 유휴 커넥션 재사용 원인 수정. 운동복 게이트 스캐너 단절(하루 최대 45건)을 락 릴레이 접점 아크 노이즈로 규명, 무접점 릴레이 교체 후 0건</dd>
+                <dt data-i18n="gk_t6">확산</dt>
+                <dd data-i18n="gk_d6">바이오스타 33대 1:1 대체 계획 — 부품 BOM·예산 산정, 발주, 3D 프린팅 케이스·단말 제작 매뉴얼 표준화</dd>
+              </dl>
+            </details>
+          </li>
+          <li data-i18n="c1_p1">서비스 출시: BG 2.0, BG Web/App 3.0, TB Operation Package, CNF 유산소 실시간 대시보드(데이터 전송량 70% 절감), 광고 수익화 대시보드, 법인·단체 대량구매 쿠폰</li>
+          <li data-i18n="c1_p8">무인·현장 운영: 런포트(마포) 키오스크·출입 게이트 연동(예약 시간대 출입, 게이트 개방 시 자동 체크인), 토스 결제 단말기 연동</li>
+          <li data-i18n="c1_p4">인프라·성능: RDS→Aurora 무중단 전환(데이터 유실 0), DB 부하 70%→10%, Redis 캐싱·Queue 분리, 주요 API 응답 60~84% 단축, Datadog 비용 58% 절감</li>
+          <li data-i18n="c1_p5">아키텍처: Rust 마이크로서비스 5개 구축(메시징 3·인증·이벤트 처리), 메시지·푸시·인증을 Django 모놀리스에서 분리</li>
           <li data-i18n="c1_p10">업무 자동화·AI: 기술지원 요청 슬랙 봇(요청 412건 분석 기반 자동 분류), LLM 러닝 수업 소개문 생성 API, React Native OTA 코드 푸시 서버 자체 구축(서버리스)</li>
           <li>발표: <a href="https://www.couchbase.com/content/case-study-high-tech/butfitSeoul-case-study" target="_blank" data-i18n="c1_p7">Couchbase APAC Partner Connect 2025 케이스 스터디</a></li>
         </ul>
@@ -715,15 +758,25 @@
         c1_period: '2023.11 ~ Present',
         c1_role: 'DX Dev Team Lead',
         c1_desc: 'Managing 6 engineers, designing architecture for 20+ services',
-        c1_p1: 'Launches: BG 2.0, TB Operation Package, BG Web/App 3.0',
-        c1_p2: 'Real-time Fitness: CNF Dashboard — live cardio data streaming to app/dashboard, 70% reduction in data transfer',
-        c1_p3: 'Payments: TOSS POS terminal integration, ad monetization dashboard',
-        c1_p4: 'Performance: PostgreSQL CPU 70%→10%, Redis caching & queue separation',
-        c1_p5: 'Architecture: Python→Rust microservices migration (messaging, auth, event processing — 6 services)',
-        c1_p6: 'IoT: GateKeeper access control system (ESP32 firmware + API + OTA) — live at 2 branches, rolling out to 14 branches to replace 33 BioStar units',
+        c1_p1: 'Launches: BG 2.0, BG Web/App 3.0, TB Operation Package, CNF real-time cardio dashboard (70% less data transfer), ad monetization dashboard, corporate/group bulk coupons',
+        c1_p4: 'Infra & performance: zero-downtime RDS → Aurora migration (no data loss), DB load 70% → 10%, Redis caching & queue separation, key API latency cut 60–84%, Datadog cost down 58%',
+        c1_p5: 'Architecture: built 5 Rust microservices (3 messaging, auth, event processing), splitting messaging, push, and auth out of the Django monolith',
+        c1_p6: 'IoT: GateKeeper in-house access control (hardware + ESP32 firmware + API + OTA) — live at 2 branches, sauna speed gate live since Oct 2026, rolling out to 14 branches to replace 33 BioStar units',
+        more: 'Details',
+        gk_t1: 'What',
+        gk_d1: 'QR access system replacing third-party devices (Suprema BioStar), applying rules such as membership type and sauna reservation windows per zone',
+        gk_t2: 'Design',
+        gk_d2: 'App QR (AES-256-GCM, 35s expiry) → ESP32-S3 decides instantly from a PSRAM member cache; cache misses are re-checked by the server via an async worker — entry keeps working when the network drops',
+        gk_t3: 'Speed gate',
+        gk_d3: 'Mapo sauna entry/exit, live since Oct 8, 2026. Entry caches only not-yet-checked-in reservations for instant opening and evicts them 15s later to block re-entry; exit auto-checks out with overtime billing at the moment of the server decision. On server failure, entry fails closed and exit fails open',
+        gk_t4: 'Reliability',
+        gk_d4: '8-layer self-healing watchdogs, OTA (SHA256 verification, version guard, auto rollback), remote reboot / zone change / timed open, 612 hardware-free unit tests across 10 suites',
+        gk_t5: 'Debugging',
+        gk_d5: 'Traced a sauna first-tap approval drop (91.8% → 45.3%) through event data to idle connection reuse and fixed it. Diagnosed scanner disconnects at the gym-wear gate (up to 45/day) as relay contact arc noise; zero after switching to solid-state relays',
+        gk_t6: 'Rollout',
+        gk_d6: 'Plan to replace 33 BioStar units 1:1 — parts BOM and budget, procurement, standardized 3D-printed cases and a build manual',
         c1_p7: 'Couchbase APAC Partner Connect 2025 Case Study',
-        c1_p8: 'Unmanned operations: check-in kiosks and access gate integration for the RunPort (Mapo) launch — time-slot based entry, auto check-in on gate open, speed-gate auto check-out with overtime billing',
-        c1_p9: 'B2B sales: designed and launched a bulk coupon system for corporate/group buyers — guest payment links, on-site TOSS terminal payment, per-coupon refund calculation (backend, buyer web, staff web)',
+        c1_p8: 'Unmanned & on-site operations: RunPort (Mapo) kiosk and access gate integration (time-slot based entry, auto check-in on gate open), TOSS payment terminal integration',
         c1_p10: 'Automation & AI: tech-support Slack bot (auto-triage built from analysis of 412 requests), LLM-generated running class description API, self-hosted React Native OTA code-push server (serverless)',
 
         // 2. 데이터뱅크
@@ -860,6 +913,16 @@
 
     document.getElementById('langToggle').addEventListener('click', () => {
       setLang(currentLang === 'ko' ? 'en' : 'ko');
+    });
+
+    // ── 인쇄 시 상세 펼침 ──
+    let closedDetails = [];
+    window.addEventListener('beforeprint', () => {
+      closedDetails = [...document.querySelectorAll('details:not([open])')];
+      closedDetails.forEach(d => d.open = true);
+    });
+    window.addEventListener('afterprint', () => {
+      closedDetails.forEach(d => d.open = false);
     });
 
     // ── 다크모드 ──
