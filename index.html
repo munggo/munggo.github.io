@@ -300,6 +300,18 @@
     .deep-dive dt { color: var(--fg-muted); }
     .deep-dive dd { color: var(--fg-secondary); }
 
+    .career-projects.cp-list { padding-left: 0; }
+    .career-projects li.cp {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 0 12px;
+      margin-bottom: 8px;
+    }
+    .career-projects li.cp::before { content: none; }
+    .cp-label { color: var(--fg-muted); font-size: 12.5px; padding-top: 1px; }
+    .cp-body { color: var(--fg-secondary); }
+    .cp-body, .case-sub, .deep-dive dd, .flow li { word-break: keep-all; overflow-wrap: break-word; }
+
     /* ── 이전 경력 (컴팩트) ── */
     .career-compact { margin-bottom: 14px; }
     .career-compact:last-child { margin-bottom: 0; }
@@ -422,6 +434,7 @@
       .skill-label { margin-top: 8px; }
       .project-grid { grid-template-columns: 1fr; }
       .cert-grid { grid-template-columns: 1fr; }
+      .career-projects li.cp { grid-template-columns: 1fr; margin-bottom: 10px; }
       .deep-dive { grid-template-columns: 1fr; gap: 0; }
       .deep-dive dd { margin-bottom: 8px; }
       .metrics { grid-template-columns: 1fr 1fr; }
@@ -608,15 +621,15 @@
         <div class="career-role" data-i18n="c1_role">DX개발팀 팀장</div>
         <div class="career-desc" data-i18n="c1_desc">개발팀 6명 총괄, 20+ 서비스 아키텍처 설계 및 운영</div>
         <div class="career-stack">AWS, Docker, PostgreSQL, Couchbase, Redis/Valkey · Python, Django, FastAPI, Rust (Axum)</div>
-        <ul class="career-projects">
-          <li><span data-i18n="c1_p6">IoT: GateKeeper 자체 출입 통제 시스템 (하드웨어 + ESP32 펌웨어 + API + OTA) — 2개 지점 운영, 사우나 스피드게이트 운영 시작(2026.10), 14개 지점 바이오스타 33대 대체 확산 중</span><a href="#case-gk" class="case-link" data-i18n="see_case">사례 보기</a></li>
-          <li data-i18n="c1_p1">서비스 출시: BG 2.0, BG Web/App 3.0, TB Operation Package, CNF 유산소 실시간 대시보드(데이터 전송량 70% 절감), 광고 수익화 대시보드, 법인·단체 대량구매 쿠폰</li>
-          <li data-i18n="c1_p11">제품 정의·협업: 런포트 PM×Dev 위클리 등 기획 회의 주재, 스피드게이트 초과요금·재입장 정책을 기능 정의 단계부터 설계, PM이 직접 만든 결과물의 배포·PR 리뷰 체계 마련</li>
-          <li data-i18n="c1_p8">무인·현장 운영: 런포트(마포) 키오스크·출입 게이트 연동(예약 시간대 출입, 게이트 개방 시 자동 체크인), 토스 결제 단말기 연동</li>
-          <li><span data-i18n="c1_p4">인프라·성능: RDS→Aurora 무중단 전환(데이터 유실 0), DB 부하 70%→10%, Redis 캐싱·Queue 분리, 주요 API 응답 60~84% 단축, Datadog 비용 58% 절감</span><a href="#case-perf" class="case-link" data-i18n="see_case">사례 보기</a></li>
-          <li data-i18n="c1_p5">아키텍처: Rust 마이크로서비스 5개 구축(메시징 3·인증·이벤트 처리), 메시지·푸시·인증을 Django 모놀리스에서 분리</li>
-          <li><span data-i18n="c1_p10">업무 자동화·AI: 기술지원 요청 슬랙 봇(요청 412건 분석 기반 자동 분류), LLM 러닝 수업 소개문 생성 API, React Native OTA 코드 푸시 서버 자체 구축(서버리스)</span><a href="#case-ai" class="case-link" data-i18n="see_case">사례 보기</a></li>
-          <li><span data-i18n="c1_p7">발표: Couchbase APAC Partner Connect 2025(발리) — 버핏서울 도입 사례, 세션당 API 호출 37→10회(70%↓)</span><a href="https://www.couchbase.com/content/case-study-high-tech/butfitSeoul-case-study" target="_blank" class="case-link" data-i18n="c1_p7_link">케이스 스터디</a></li>
+        <ul class="career-projects cp-list">
+          <li class="cp"><span class="cp-label" data-i18n="c1_l6">IoT</span><div class="cp-body"><span data-i18n="c1_p6">GateKeeper 자체 출입 통제 시스템(하드웨어 + ESP32 펌웨어 + API + OTA)<br>2개 지점 운영 · 사우나 스피드게이트 운영 시작(2026.10) · 14개 지점 바이오스타 33대 대체 확산 중</span><a href="#case-gk" class="case-link" data-i18n="see_case">사례 보기</a></div></li>
+          <li class="cp"><span class="cp-label" data-i18n="c1_l1">서비스 출시</span><div class="cp-body"><span data-i18n="c1_p1">BG 2.0 · BG Web/App 3.0 · TB Operation Package · 법인·단체 대량구매 쿠폰<br>CNF 유산소 실시간 대시보드(데이터 전송량 70% 절감) · 광고 수익화 대시보드</span></div></li>
+          <li class="cp"><span class="cp-label" data-i18n="c1_l11">제품 정의·협업</span><div class="cp-body"><span data-i18n="c1_p11">런포트 PM×Dev 위클리 등 기획 회의 주재<br>스피드게이트 초과요금·재입장 정책을 기능 정의 단계부터 설계<br>PM이 직접 만든 결과물의 배포·PR 리뷰 체계 마련</span></div></li>
+          <li class="cp"><span class="cp-label" data-i18n="c1_l8">무인·현장 운영</span><div class="cp-body"><span data-i18n="c1_p8">런포트(마포) 키오스크·출입 게이트 연동 — 예약 시간대 출입, 게이트 개방 시 자동 체크인<br>토스 결제 단말기 연동</span></div></li>
+          <li class="cp"><span class="cp-label" data-i18n="c1_l4">인프라·성능</span><div class="cp-body"><span data-i18n="c1_p4">RDS → Aurora 무중단 전환(데이터 유실 0) · DB 부하 70% → 10%<br>주요 API 응답 60~84% 단축 · Redis 캐싱·Queue 분리 · Datadog 비용 58% 절감</span><a href="#case-perf" class="case-link" data-i18n="see_case">사례 보기</a></div></li>
+          <li class="cp"><span class="cp-label" data-i18n="c1_l5">아키텍처</span><div class="cp-body"><span data-i18n="c1_p5">Rust 마이크로서비스 5개 구축 — 메시징 3 · 인증 · 이벤트 처리<br>메시지·푸시·인증을 Django 모놀리스에서 분리</span></div></li>
+          <li class="cp"><span class="cp-label" data-i18n="c1_l10">업무 자동화·AI</span><div class="cp-body"><span data-i18n="c1_p10">기술지원 요청 슬랙 봇(요청 412건 분석 기반 자동 분류) · LLM 러닝 수업 소개문 생성 API<br>React Native OTA 코드 푸시 서버 자체 구축(서버리스)</span><a href="#case-ai" class="case-link" data-i18n="see_case">사례 보기</a></div></li>
+          <li class="cp"><span class="cp-label" data-i18n="c1_l7">발표</span><div class="cp-body"><span data-i18n="c1_p7">Couchbase APAC Partner Connect 2025(발리) — 버핏서울 도입 사례<br>세션당 API 호출 37 → 10회(70%↓)</span><a href="https://www.couchbase.com/content/case-study-high-tech/butfitSeoul-case-study" target="_blank" class="case-link" data-i18n="c1_p7_link">케이스 스터디</a></div></li>
         </ul>
       </div>
 
@@ -629,11 +642,11 @@
         <div class="career-role">VP of Engineering</div>
         <div class="career-desc" data-i18n="c2_desc">개발조직 매니지먼트, 아키텍처 설계, 인프라 설계/관리</div>
         <div class="career-stack">AWS, Linux, Docker, PostgreSQL, Redis, Kafka · Python, Django, FastAPI</div>
-        <ul class="career-projects">
-          <li data-i18n="c2_p1">B2B 확장: Edmissions(해외), 시원스쿨(국내) 서비스 오픈, LMS 개발</li>
-          <li data-i18n="c2_p2">AI 첨삭: TOEFL/IELTS Speaking·Writing 자동 첨삭 서비스</li>
-          <li data-i18n="c2_p3">Testglider: Practice 리뉴얼, iOS/Android 앱 출시, IELTS Full Test 오픈</li>
-          <li data-i18n="c2_p4">수익화: IELTS 유료 전환, Multi-PG 결제 연동</li>
+        <ul class="career-projects cp-list">
+          <li class="cp"><span class="cp-label" data-i18n="c2_l1">B2B 확장</span><div class="cp-body"><span data-i18n="c2_p1">Edmissions(해외) · 시원스쿨(국내) 서비스 오픈 · LMS 개발</span></div></li>
+          <li class="cp"><span class="cp-label" data-i18n="c2_l2">AI 첨삭</span><div class="cp-body"><span data-i18n="c2_p2">TOEFL/IELTS Speaking·Writing 자동 첨삭 서비스</span></div></li>
+          <li class="cp"><span class="cp-label" data-i18n="c2_l3">Testglider</span><div class="cp-body"><span data-i18n="c2_p3">Practice 리뉴얼 · iOS/Android 앱 출시 · IELTS Full Test 오픈</span></div></li>
+          <li class="cp"><span class="cp-label" data-i18n="c2_l4">수익화</span><div class="cp-body"><span data-i18n="c2_p4">IELTS 유료 전환 · Multi-PG 결제 연동</span></div></li>
         </ul>
       </div>
 
@@ -646,9 +659,9 @@
         <div class="career-role" data-i18n="c3_role">본부장, CTO</div>
         <div class="career-desc" data-i18n="c3_desc">개발조직 매니지먼트, 아키텍처 설계, 인프라 설계/관리</div>
         <div class="career-stack">AWS, Linux, Nginx, MySQL, Redis, ElasticSearch, Splunk, Kafka, Fusion · JAVA, C#, Python, Django</div>
-        <ul class="career-projects">
-          <li data-i18n="c3_p1">성능 개선: MQ 비동기 처리, Redis 캐시 고도화, Elasticsearch 검색 최적화</li>
-          <li data-i18n="c3_p2">ktown4u.com 차세대 플랫폼 설계 (K-POP 글로벌 커머스)</li>
+        <ul class="career-projects cp-list">
+          <li class="cp"><span class="cp-label" data-i18n="c3_l1">성능 개선</span><div class="cp-body"><span data-i18n="c3_p1">MQ 비동기 처리 · Redis 캐시 고도화 · Elasticsearch 검색 최적화</span></div></li>
+          <li class="cp"><span class="cp-label" data-i18n="c3_l2">플랫폼</span><div class="cp-body"><span data-i18n="c3_p2">ktown4u.com 차세대 플랫폼 설계(K-POP 글로벌 커머스)</span></div></li>
         </ul>
       </div>
 
@@ -661,8 +674,8 @@
         <div class="career-role">CTO</div>
         <div class="career-desc" data-i18n="c4_desc">개발조직 매니지먼트, 아키텍처 설계, 인프라 설계/관리</div>
         <div class="career-stack">AWS, Linux, Nginx, MySQL, Memcached, Redis · Python, Flask, PHP, Laravel</div>
-        <ul class="career-projects">
-          <li data-i18n="c4_p1">B2B 입점형 커머스 yesbee.com, B2C 뷰티 커머스 cindypick.com 개발·론칭</li>
+        <ul class="career-projects cp-list">
+          <li class="cp"><span class="cp-label" data-i18n="c4_l1">커머스</span><div class="cp-body"><span data-i18n="c4_p1">B2B 입점형 커머스 yesbee.com · B2C 뷰티 커머스 cindypick.com 개발·론칭</span></div></li>
         </ul>
       </div>
 
@@ -1056,11 +1069,16 @@
         c1_period: '2023.11 ~ Present',
         c1_role: 'DX Dev Team Lead',
         c1_desc: 'Managing 6 engineers, designing architecture for 20+ services',
-        c1_p1: 'Launches: BG 2.0, BG Web/App 3.0, TB Operation Package, CNF real-time cardio dashboard (70% less data transfer), ad monetization dashboard, corporate/group bulk coupons',
-        c1_p11: 'Product definition & collaboration: chaired planning meetings including the RunPort PM×Dev weekly, designed speed-gate overtime-billing and re-entry policies from the feature-definition stage, set up deployment and PR review for PM-built work',
-        c1_p4: 'Infra & performance: zero-downtime RDS → Aurora migration (no data loss), DB load 70% → 10%, Redis caching & queue separation, key API latency cut 60–84%, Datadog cost down 58%',
-        c1_p5: 'Architecture: built 5 Rust microservices (3 messaging, auth, event processing), splitting messaging, push, and auth out of the Django monolith',
-        c1_p6: 'IoT: GateKeeper in-house access control (hardware + ESP32 firmware + API + OTA) — live at 2 branches, sauna speed gate live since Oct 2026, rolling out to 14 branches to replace 33 BioStar units',
+        c1_l1: 'Launches',
+        c1_p1: 'BG 2.0 · BG Web/App 3.0 · TB Operation Package · corporate/group bulk coupons<br>CNF real-time cardio dashboard (70% less data transfer) · ad monetization dashboard',
+        c1_l11: 'Product',
+        c1_p11: 'Chaired planning meetings including the RunPort PM×Dev weekly<br>Designed speed-gate overtime-billing and re-entry policies from the feature-definition stage<br>Set up deployment and PR review for PM-built work',
+        c1_l4: 'Infra & perf',
+        c1_p4: 'Zero-downtime RDS → Aurora migration (no data loss) · DB load 70% → 10%<br>Key API latency cut 60–84% · Redis caching & queue separation · Datadog cost down 58%',
+        c1_l5: 'Architecture',
+        c1_p5: 'Built 5 Rust microservices — 3 messaging · auth · event processing<br>Split messaging, push, and auth out of the Django monolith',
+        c1_l6: 'IoT',
+        c1_p6: 'GateKeeper in-house access control (hardware + ESP32 firmware + API + OTA)<br>Live at 2 branches · sauna speed gate live since Oct 2026 · replacing 33 BioStar units across 14 branches',
         more: 'Details',
         gk_t1: 'What',
         gk_d1: 'QR access system replacing third-party devices (Suprema BioStar), applying rules such as membership type and sauna reservation windows per zone',
@@ -1074,31 +1092,41 @@
         gk_d5: 'Traced a sauna first-tap approval drop (91.8% → 45.3%) through event data to idle connection reuse and fixed it. Diagnosed scanner disconnects at the gym-wear gate (up to 45/day) as relay contact arc noise; zero after switching to solid-state relays',
         gk_t6: 'Rollout',
         gk_d6: 'Plan to replace 33 BioStar units 1:1 — parts BOM and budget, procurement, standardized 3D-printed cases and a build manual',
-        c1_p7: 'Talk: Couchbase APAC Partner Connect 2025 (Bali) — Butfit Seoul adoption story, API calls per session 37 → 10 (−70%)',
+        c1_l7: 'Talk',
+        c1_p7: 'Couchbase APAC Partner Connect 2025 (Bali) — Butfit Seoul adoption story<br>API calls per session 37 → 10 (−70%)',
         c1_p7_link: 'Case study',
-        c1_p8: 'Unmanned & on-site operations: RunPort (Mapo) kiosk and access gate integration (time-slot based entry, auto check-in on gate open), TOSS payment terminal integration',
-        c1_p10: 'Automation & AI: tech-support Slack bot (auto-triage built from analysis of 412 requests), LLM-generated running class description API, self-hosted React Native OTA code-push server (serverless)',
+        c1_l8: 'On-site ops',
+        c1_p8: 'RunPort (Mapo) kiosk and access gate integration — time-slot based entry, auto check-in on gate open<br>TOSS payment terminal integration',
+        c1_l10: 'Automation & AI',
+        c1_p10: 'Tech-support Slack bot (auto-triage built from analysis of 412 requests) · LLM-generated running class description API<br>Self-hosted React Native OTA code-push server (serverless)',
 
         // 2. 데이터뱅크
         c2_name: 'Databank',
         c2_desc: 'Engineering management, architecture & infrastructure design',
-        c2_p1: 'B2B Expansion: Edmissions (global), Siwonschool (domestic), LMS development',
-        c2_p2: 'AI Grading: TOEFL/IELTS Speaking & Writing auto-grading service',
-        c2_p3: 'Testglider: Practice renewal, iOS/Android app launch, IELTS Full Test',
-        c2_p4: 'Monetization: IELTS paid tier, Multi-PG payment integration',
+        c2_l1: 'B2B expansion',
+        c2_p1: 'Edmissions (global) · Siwonschool (domestic) launches · LMS development',
+        c2_l2: 'AI grading',
+        c2_p2: 'TOEFL/IELTS Speaking & Writing auto-grading service',
+        c2_l3: 'Testglider',
+        c2_p3: 'Practice renewal · iOS/Android app launch · IELTS Full Test',
+        c2_l4: 'Monetization',
+        c2_p4: 'IELTS paid tier · Multi-PG payment integration',
 
         // 3. 에이치엠
         c3_name: 'HM International',
         c3_role: 'Division Head, CTO',
         c3_desc: 'Engineering management, architecture & infrastructure design',
-        c3_p1: 'Performance: MQ async processing, Redis cache optimization, Elasticsearch search tuning',
+        c3_l1: 'Performance',
+        c3_p1: 'MQ async processing · Redis cache optimization · Elasticsearch search tuning',
+        c3_l2: 'Platform',
         c3_p2: 'ktown4u.com next-gen platform design (K-POP global commerce)',
 
         // 4. 아이오앤코
         c4_name: 'IO&Co Korea <span class="career-sub">(now Yesbee)</span>',
         c4_sub: '(now Yesbee)',
         c4_desc: 'Engineering management, architecture & infrastructure design',
-        c4_p1: 'B2B marketplace yesbee.com, B2C beauty commerce cindypick.com — development & launch',
+        c4_l1: 'Commerce',
+        c4_p1: 'B2B marketplace yesbee.com · B2C beauty commerce cindypick.com — development & launch',
 
         // 이전 경력
         c5_name: 'Tera Fintech',
