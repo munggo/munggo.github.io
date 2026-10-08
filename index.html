@@ -177,9 +177,108 @@
       margin-left: 4px;
     }
 
+    /* ── 핵심 지표 ── */
+    .header-summary .lede {
+      display: block;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--fg);
+      letter-spacing: -0.2px;
+      margin-bottom: 2px;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 28px;
+    }
+    .metric {
+      background: var(--bg-alt);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .metric b {
+      display: block;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+    .metric span { display: block; font-size: 12px; color: var(--fg-muted); line-height: 1.5; margin-top: 2px; }
+
+    /* ── 대표 성과 ── */
+    .case {
+      background: var(--bg-alt);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 12px;
+      scroll-margin-top: 24px;
+    }
+    .case:last-child { margin-bottom: 0; }
+    .case-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; }
+    .case-title { font-size: 16px; font-weight: 700; }
+    .case-period { font-size: 12px; color: var(--fg-muted); }
+    .case-sub { font-size: 13px; color: var(--fg-secondary); margin: 2px 0 10px; }
+    .case-tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; }
+    .case-tags li {
+      font-size: 12px;
+      color: var(--fg-secondary);
+      background: var(--bg);
+      border-radius: 6px;
+      padding: 2px 8px;
+    }
+    .case summary { cursor: pointer; list-style: none; display: inline-block; margin-top: 12px; }
+    .case summary::-webkit-details-marker { display: none; }
+    .case summary .detail-toggle { margin-left: 0; }
+    .case-link { font-size: 12px; margin-left: 6px; white-space: nowrap; }
+
+    /* ── 흐름도 ── */
+    .flow {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      margin-top: 12px;
+    }
+    .flow li {
+      flex: 1;
+      position: relative;
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: var(--fg-muted);
+      line-height: 1.5;
+    }
+    .flow li b { display: block; font-size: 13px; font-weight: 600; color: var(--fg); }
+    .flow li + li::before {
+      content: "→";
+      position: absolute;
+      left: -18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--fg-muted);
+    }
+    .flow-note { font-size: 12px; color: var(--fg-muted); margin-top: 8px; }
+
+    /* ── 전후 비교 막대 ── */
+    .chart { background: var(--bg); border-radius: 8px; padding: 12px 16px; margin-top: 12px; }
+    .chart-title { font-size: 12.5px; font-weight: 600; color: var(--fg); }
+    .chart-caption { font-size: 11px; color: var(--fg-muted); margin-bottom: 8px; }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 112px 1fr 96px 40px;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      padding: 3px 0;
+    }
+    .bar-label { color: var(--fg-secondary); }
+    .bar-track { height: 8px; background: var(--border); border-radius: 0 4px 4px 0; }
+    .bar-fill { display: block; height: 100%; background: var(--fg-secondary); border-radius: 0 4px 4px 0; }
+    .bar-value { color: var(--fg-secondary); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .bar-delta { color: var(--fg); font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+
     /* ── 상세 펼침 ── */
-    .career-projects summary { cursor: pointer; list-style: none; }
-    .career-projects summary::-webkit-details-marker { display: none; }
     .detail-toggle {
       font-size: 12px;
       color: var(--fg-accent);
@@ -189,9 +288,9 @@
     .detail-toggle::after { content: " ▾"; }
     details[open] .detail-toggle::after { content: " ▴"; }
     .deep-dive {
-      margin: 8px 0 6px;
+      margin: 12px 0 2px;
       padding: 12px 16px;
-      background: var(--bg-alt);
+      background: var(--bg);
       border-radius: 8px;
       display: grid;
       grid-template-columns: 76px 1fr;
@@ -306,8 +405,12 @@
       .career-item { margin-bottom: 16px; }
       .project-grid { gap: 12px; }
       a { color: inherit !important; }
-      .detail-toggle { display: none; }
+      .detail-toggle, .case-link { display: none; }
       .deep-dive { background: none; padding: 4px 0 0 8px; border-left: 2px solid #e5e5e5; border-radius: 0; }
+      .metric, .case, .flow li, .chart { border: 1px solid #e5e5e5; }
+      .case { break-inside: avoid; }
+      .bar-track { background: #e5e5e5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .bar-fill { background: #555; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
 
     /* ── 반응형 ── */
@@ -321,6 +424,12 @@
       .cert-grid { grid-template-columns: 1fr; }
       .deep-dive { grid-template-columns: 1fr; gap: 0; }
       .deep-dive dd { margin-bottom: 8px; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .case { padding: 16px; }
+      .flow { flex-direction: column; gap: 20px; }
+      .flow li + li::before { content: "↓"; left: 50%; top: -17px; transform: translateX(-50%); }
+      .bar-row { grid-template-columns: 1fr 88px 36px; gap: 2px 8px; }
+      .bar-label { grid-column: 1 / -1; }
     }
   </style>
 </head>
@@ -340,41 +449,114 @@
           <div class="header-title" data-i18n="title">DX개발팀 팀장 · (주) 버핏서울</div>
         </div>
       </div>
-      <p class="header-summary" data-i18n="summary">
-        6명의 팀을 이끌며 서비스를 운영하고, 퇴근 후엔 AI와 함께 앱을 개발합니다.
-      </p>
+      <p class="header-summary" data-i18n="summary"><span class="lede">문제를 정의하고, 하드웨어부터 서버까지 끝까지 만드는 엔지니어입니다.</span>낮에는 6명의 팀을 이끌고, 퇴근 후엔 AI 에이전트와 함께 앱을 출시합니다.</p>
       <div class="header-contact">
         <a href="tel:01072020235">010-7202-0235</a>
         <a href="mailto:munggo@gmail.com">munggo@gmail.com</a>
       </div>
-    </div>
-
-    <!-- ====== 보유 기술 ====== -->
-    <div class="section">
-      <div class="section-title">Skills</div>
-      <p class="header-summary" style="margin-bottom: 16px;" data-i18n="skills_quote">언어는 도구일 뿐, 중요한 건 무엇을 만들 수 있는가입니다.</p>
-      <div class="skills-grid">
-        <span class="skill-label">Language</span>
-        <span class="skill-items">Python, PHP, JavaScript, Swift, Kotlin, Rust, C</span>
-        <span class="skill-label">Database</span>
-        <span class="skill-items">MySQL, PostgreSQL, MongoDB, Couchbase, Redis, Elasticsearch</span>
-        <span class="skill-label">Infra</span>
-        <span class="skill-items">AWS, Linux, Docker, Nginx, GCP, Azure</span>
-        <span class="skill-label">Framework</span>
-        <span class="skill-items">Django, FastAPI, Laravel, Flask, Express</span>
+      <div class="metrics">
+        <div class="metric" data-i18n="m1"><b>20년+</b><span>개발 경력</span></div>
+        <div class="metric" data-i18n="m2"><b>20명</b><span>최대 조직 규모 운영</span></div>
+        <div class="metric" data-i18n="m3"><b>14개 지점</b><span>GateKeeper 확산 진행</span></div>
+        <div class="metric" data-i18n="m4"><b>앱 3개</b><span>1인 개발 · iOS 출시</span></div>
       </div>
     </div>
 
-    <!-- ====== AI & Leadership ====== -->
+    <!-- ====== 대표 성과 ====== -->
     <div class="section">
-      <div class="section-title">AI & Leadership</div>
-      <div class="skills-grid">
-        <span class="skill-label">AI</span>
-        <span class="skill-items" data-i18n="skill_ai">Claude Code 활용 풀스택 개발 — iOS, Android, Backend, Infra 1인 동시 개발</span>
-        <span class="skill-label">Management</span>
-        <span class="skill-items" data-i18n="skill_mgmt">최대 20명 규모 개발 조직 운영 경험, 현재 6명 팀 총괄 · 코드 리뷰, 아키텍처 의사결정, 채용</span>
-        <span class="skill-label">Architecture</span>
-        <span class="skill-items" data-i18n="skill_arch">모놀리스→마이크로서비스 전환, Python→Rust 마이그레이션 설계</span>
+      <div class="section-title">Highlights</div>
+
+      <!-- GateKeeper -->
+      <div class="case" id="case-gk">
+        <div class="case-head">
+          <span class="case-title">GateKeeper</span>
+          <span class="case-period" data-i18n="case_gk_period">버핏서울 · 2026.02 ~ 현재</span>
+        </div>
+        <p class="case-sub" data-i18n="case_gk_sub">외산 출입기기를 대체하는 자체 출입 통제 시스템 — 하드웨어·펌웨어·서버·운영까지 직접 설계·개발</p>
+        <ul class="case-tags" data-i18n="case_gk_tags"><li>2개 지점 운영</li><li>사우나 스피드게이트 운영(2026.10)</li><li>14개 지점 33대 확산 중</li><li>단위 테스트 612건</li></ul>
+        <details>
+          <summary><span class="detail-toggle" data-i18n="more">상세</span></summary>
+          <ol class="flow">
+            <li data-i18n="gk_f1"><b>앱 QR</b>AES-256-GCM · 35초 만료</li>
+            <li data-i18n="gk_f2"><b>스캐너</b>USB HID 입력</li>
+            <li data-i18n="gk_f3"><b>ESP32-S3</b>PSRAM 회원 캐시로 즉시 판정</li>
+            <li data-i18n="gk_f4"><b>릴레이</b>도어락 · 스피드게이트</li>
+          </ol>
+          <p class="flow-note" data-i18n="gk_f_note">⇅ 서버(Django API): 60초 명단 동기화 · 캐시 미스 실시간 재판정 · 출입 이벤트 수집 · OTA</p>
+          <dl class="deep-dive">
+            <dt data-i18n="gk_t1">무엇을</dt>
+            <dd data-i18n="gk_d1">외산 출입기기(수프리마 바이오스타)를 대체하는 QR 출입 시스템. 멤버십 종류·사우나 예약 시간대 같은 판정 규칙을 구역별로 직접 반영</dd>
+            <dt data-i18n="gk_t2">구조</dt>
+            <dd data-i18n="gk_d2">앱 QR(AES-256-GCM, 35초 만료) → ESP32-S3가 PSRAM 회원 캐시로 즉시 판정, 캐시에 없으면 비동기 워커가 서버 재판정 — 네트워크가 끊겨도 출입 유지</dd>
+            <dt data-i18n="gk_t3">스피드게이트</dt>
+            <dd data-i18n="gk_d3">마포 사우나 입·출구, 2026.10.08 운영 시작. 입구는 체크인 전 예약자만 캐시해 즉시 개방하고 15초 뒤 캐시를 지워 재입장 차단, 출구는 서버 판정과 동시에 자동 체크아웃·초과요금 청구. 서버 장애 시 입구는 닫고 출구는 여는 비대칭 설계</dd>
+            <dt data-i18n="gk_t4">안정성</dt>
+            <dd data-i18n="gk_d4">8계층 자가 복구 워치독, OTA(SHA256 검증·버전 가드·자동 롤백), 원격 재부팅·구역 변경·시간제 개방, 하드웨어 없이 도는 단위 테스트 10개 스위트 612건</dd>
+            <dt data-i18n="gk_t5">문제 해결</dt>
+            <dd data-i18n="gk_d5">사우나 첫 태깅 허용률 91.8%→45.3% 회귀를 이벤트 데이터로 추적해 유휴 커넥션 재사용 원인 수정. 운동복 게이트 스캐너 단절(하루 최대 45건)을 락 릴레이 접점 아크 노이즈로 규명, 무접점 릴레이 교체 후 0건</dd>
+            <dt data-i18n="gk_t6">확산</dt>
+            <dd data-i18n="gk_d6">바이오스타 33대 1:1 대체 계획 — 부품 BOM·예산 산정, 발주, 3D 프린팅 케이스·단말 제작 매뉴얼 표준화</dd>
+          </dl>
+        </details>
+      </div>
+
+      <!-- 운영 인프라·성능 -->
+      <div class="case" id="case-perf">
+        <div class="case-head">
+          <span class="case-title" data-i18n="case_perf_title">운영 인프라·성능</span>
+          <span class="case-period" data-i18n="case_perf_period">버핏서울 · 2025 ~ 2026</span>
+        </div>
+        <p class="case-sub" data-i18n="case_perf_sub">느린 API, 높은 DB 부하, 늘어나는 모니터링 비용을 병목 순서대로 하나씩 해결</p>
+        <ul class="case-tags" data-i18n="case_perf_tags"><li>RDS→Aurora 무중단 전환 · 유실 0</li><li>DB 부하 70%→10%</li><li>주요 API 응답 60~84%↓</li><li>Datadog 비용 58%↓</li></ul>
+        <details>
+          <summary><span class="detail-toggle" data-i18n="more">상세</span></summary>
+          <div class="chart">
+            <div class="chart-title" data-i18n="ch_title">Django 캐싱 전후 응답 시간</div>
+            <div class="chart-caption" data-i18n="ch_caption">막대 전체 = 개선 전, 진한 부분 = 개선 후</div>
+            <div class="bar-row"><span class="bar-label" data-i18n="ch_1">장소(Place)</span><span class="bar-track"><span class="bar-fill" style="width:19%"></span></span><span class="bar-value">790 → 150ms</span><span class="bar-delta">−81%</span></div>
+            <div class="bar-row"><span class="bar-label" data-i18n="ch_2">패스(Pass)</span><span class="bar-track"><span class="bar-fill" style="width:22.7%"></span></span><span class="bar-value">384 → 87ms</span><span class="bar-delta">−77%</span></div>
+            <div class="bar-row"><span class="bar-label" data-i18n="ch_3">락커</span><span class="bar-track"><span class="bar-fill" style="width:15.6%"></span></span><span class="bar-value">3.2s → 500ms</span><span class="bar-delta">−84%</span></div>
+            <div class="bar-row"><span class="bar-label" data-i18n="ch_4">목표 통계</span><span class="bar-track"><span class="bar-fill" style="width:40.2%"></span></span><span class="bar-value">199 → 80ms</span><span class="bar-delta">−60%</span></div>
+            <div class="bar-row"><span class="bar-label" data-i18n="ch_5">체크인 대시보드</span><span class="bar-track"><span class="bar-fill" style="width:34.1%"></span></span><span class="bar-value">440 → 150ms</span><span class="bar-delta">−66%</span></div>
+          </div>
+          <dl class="deep-dive">
+            <dt data-i18n="pf_t1">캐싱</dt>
+            <dd data-i18n="pf_d1">APM에서 느린 순서대로 병목을 골라 캐시를 적용하고, 시그널 기반 캐시 무효화 패턴을 정립. 키오스크 체크인 API는 105쿼리·372ms → 약 50ms</dd>
+            <dt data-i18n="pf_t2">DB</dt>
+            <dd data-i18n="pf_d2">쿼리 분석·인덱스 최적화와 Couchbase 캐싱으로 DB 부하 70% → 10%</dd>
+            <dt data-i18n="pf_t3">전환</dt>
+            <dd data-i18n="pf_d3">RDS → Aurora: 전날 리허설 후 새벽 1시간 45분 만에 전환, 데이터 유실 0. APM 에이전트(ddtrace) 문제는 전환 전에 미리 해소</dd>
+            <dt data-i18n="pf_t4">비용</dt>
+            <dd data-i18n="pf_d4">Datadog 로그·APM·개발/스테이징 에이전트를 줄여 월 $1,134 → $475 (연 약 $7,900 절감)</dd>
+          </dl>
+        </details>
+      </div>
+
+      <!-- TripPing -->
+      <div class="case" id="case-trip">
+        <div class="case-head">
+          <span class="case-title">TripPing</span>
+          <span class="case-period" data-i18n="case_trip_period">개인 프로젝트 · 2025 ~ 현재</span>
+        </div>
+        <p class="case-sub" data-i18n="case_trip_sub">한국 문화유산·관광지 위치 기반 여행 앱 — 수집부터 번역·배포까지 혼자 운영하는 자동화 파이프라인</p>
+        <ul class="case-tags" data-i18n="case_trip_tags"><li>장소 17,011곳</li><li>10개 언어</li><li>하루 2회 자동 배포</li><li>증분 패치 69MB → 1MB 미만</li></ul>
+        <details>
+          <summary><span class="detail-toggle" data-i18n="more">상세</span></summary>
+          <ol class="flow">
+            <li data-i18n="tp_f1"><b>수집</b>TourAPI · Odii</li>
+            <li data-i18n="tp_f2"><b>정제·번역</b>10개 언어 · 음성 안내</li>
+            <li data-i18n="tp_f3"><b>내보내기</b>SQLite + 증분 패치</li>
+            <li data-i18n="tp_f4"><b>배포</b>S3 + CloudFront → 앱</li>
+          </ol>
+          <dl class="deep-dive">
+            <dt data-i18n="tp_t1">과제</dt>
+            <dd data-i18n="tp_d1">매일 바뀌는 공공 관광 데이터를 10개 언어로, 서버 운영 부담 없이 혼자 유지</dd>
+            <dt data-i18n="tp_t2">접근</dt>
+            <dd data-i18n="tp_d2">EC2를 없애고 S3 + CloudFront 정적 배포로 전환. 앱은 번들 DB로 오프라인 동작하고, 직전 배포 DB와 행 단위로 비교한 증분 패치만 받음</dd>
+            <dt data-i18n="tp_t3">결과</dt>
+            <dd data-i18n="tp_d3">9/10~9/30 하루 2회 파이프라인 전 단계 정상 완주, 증분 패치 매회 69MB → 68~658KB, 2026 관광데이터 활용 공모전 예비심사 합격</dd>
+          </dl>
+        </details>
       </div>
     </div>
 
@@ -392,28 +574,10 @@
         <div class="career-desc" data-i18n="c1_desc">개발팀 6명 총괄, 20+ 서비스 아키텍처 설계 및 운영</div>
         <div class="career-stack">AWS, Docker, PostgreSQL, Couchbase, Redis/Valkey · Python, Django, FastAPI, Rust (Axum)</div>
         <ul class="career-projects">
-          <li>
-            <details>
-              <summary><span data-i18n="c1_p6">IoT: GateKeeper 자체 출입 통제 시스템 (하드웨어 + ESP32 펌웨어 + API + OTA) — 2개 지점 운영, 사우나 스피드게이트 운영 시작(2026.10), 14개 지점 바이오스타 33대 대체 확산 중</span><span class="detail-toggle" data-i18n="more">상세</span></summary>
-              <dl class="deep-dive">
-                <dt data-i18n="gk_t1">무엇을</dt>
-                <dd data-i18n="gk_d1">외산 출입기기(수프리마 바이오스타)를 대체하는 QR 출입 시스템. 멤버십 종류·사우나 예약 시간대 같은 판정 규칙을 구역별로 직접 반영</dd>
-                <dt data-i18n="gk_t2">구조</dt>
-                <dd data-i18n="gk_d2">앱 QR(AES-256-GCM, 35초 만료) → ESP32-S3가 PSRAM 회원 캐시로 즉시 판정, 캐시에 없으면 비동기 워커가 서버 재판정 — 네트워크가 끊겨도 출입 유지</dd>
-                <dt data-i18n="gk_t3">스피드게이트</dt>
-                <dd data-i18n="gk_d3">마포 사우나 입·출구, 2026.10.08 운영 시작. 입구는 체크인 전 예약자만 캐시해 즉시 개방하고 15초 뒤 캐시를 지워 재입장 차단, 출구는 서버 판정과 동시에 자동 체크아웃·초과요금 청구. 서버 장애 시 입구는 닫고 출구는 여는 비대칭 설계</dd>
-                <dt data-i18n="gk_t4">안정성</dt>
-                <dd data-i18n="gk_d4">8계층 자가 복구 워치독, OTA(SHA256 검증·버전 가드·자동 롤백), 원격 재부팅·구역 변경·시간제 개방, 하드웨어 없이 도는 단위 테스트 10개 스위트 612건</dd>
-                <dt data-i18n="gk_t5">문제 해결</dt>
-                <dd data-i18n="gk_d5">사우나 첫 태깅 허용률 91.8%→45.3% 회귀를 이벤트 데이터로 추적해 유휴 커넥션 재사용 원인 수정. 운동복 게이트 스캐너 단절(하루 최대 45건)을 락 릴레이 접점 아크 노이즈로 규명, 무접점 릴레이 교체 후 0건</dd>
-                <dt data-i18n="gk_t6">확산</dt>
-                <dd data-i18n="gk_d6">바이오스타 33대 1:1 대체 계획 — 부품 BOM·예산 산정, 발주, 3D 프린팅 케이스·단말 제작 매뉴얼 표준화</dd>
-              </dl>
-            </details>
-          </li>
+          <li><span data-i18n="c1_p6">IoT: GateKeeper 자체 출입 통제 시스템 (하드웨어 + ESP32 펌웨어 + API + OTA) — 2개 지점 운영, 사우나 스피드게이트 운영 시작(2026.10), 14개 지점 바이오스타 33대 대체 확산 중</span><a href="#case-gk" class="case-link" data-i18n="see_case">사례 보기</a></li>
           <li data-i18n="c1_p1">서비스 출시: BG 2.0, BG Web/App 3.0, TB Operation Package, CNF 유산소 실시간 대시보드(데이터 전송량 70% 절감), 광고 수익화 대시보드, 법인·단체 대량구매 쿠폰</li>
           <li data-i18n="c1_p8">무인·현장 운영: 런포트(마포) 키오스크·출입 게이트 연동(예약 시간대 출입, 게이트 개방 시 자동 체크인), 토스 결제 단말기 연동</li>
-          <li data-i18n="c1_p4">인프라·성능: RDS→Aurora 무중단 전환(데이터 유실 0), DB 부하 70%→10%, Redis 캐싱·Queue 분리, 주요 API 응답 60~84% 단축, Datadog 비용 58% 절감</li>
+          <li><span data-i18n="c1_p4">인프라·성능: RDS→Aurora 무중단 전환(데이터 유실 0), DB 부하 70%→10%, Redis 캐싱·Queue 분리, 주요 API 응답 60~84% 단축, Datadog 비용 58% 절감</span><a href="#case-perf" class="case-link" data-i18n="see_case">사례 보기</a></li>
           <li data-i18n="c1_p5">아키텍처: Rust 마이크로서비스 5개 구축(메시징 3·인증·이벤트 처리), 메시지·푸시·인증을 Django 모놀리스에서 분리</li>
           <li data-i18n="c1_p10">업무 자동화·AI: 기술지원 요청 슬랙 봇(요청 412건 분석 기반 자동 분류), LLM 러닝 수업 소개문 생성 API, React Native OTA 코드 푸시 서버 자체 구축(서버리스)</li>
           <li>발표: <a href="https://www.couchbase.com/content/case-study-high-tech/butfitSeoul-case-study" target="_blank" data-i18n="c1_p7">Couchbase APAC Partner Connect 2025 케이스 스터디</a></li>
@@ -595,7 +759,7 @@
           </div>
           <div class="project-stack">Swift (SwiftUI), Kotlin (Compose), FastAPI, PostgreSQL + PostGIS</div>
           <ul class="project-desc">
-            <li data-i18n="p_trip1">한국 문화유산·관광지 위치 기반 여행 앱 — iOS 출시(2026.03)</li>
+            <li><span data-i18n="p_trip1">한국 문화유산·관광지 위치 기반 여행 앱 — iOS 출시(2026.03)</span><a href="#case-trip" class="case-link" data-i18n="see_case">사례 보기</a></li>
             <li data-i18n="p_trip2">17,011개 장소, 131,321장 사진, 635개 역사 이벤트</li>
             <li data-i18n="p_trip3">동적 지오펜싱, 방문 기록 자동 감지, 음성 안내(공식 오디오 가이드 1,961곳, 자체 TTS 7,257곳)</li>
             <li data-i18n="p_trip4">다국어 10개 언어, 하루 2회 자동 수집·번역·배포 파이프라인(S3 + CloudFront), 증분 패치 69MB → 1MB 미만</li>
@@ -708,6 +872,35 @@
       </div>
     </div>
 
+    <!-- ====== 보유 기술 ====== -->
+    <div class="section">
+      <div class="section-title">Skills</div>
+      <p class="header-summary" style="margin-bottom: 16px;" data-i18n="skills_quote">언어는 도구일 뿐, 중요한 건 무엇을 만들 수 있는가입니다.</p>
+      <div class="skills-grid">
+        <span class="skill-label">Language</span>
+        <span class="skill-items">Python, PHP, JavaScript, Swift, Kotlin, Rust, C</span>
+        <span class="skill-label">Database</span>
+        <span class="skill-items">MySQL, PostgreSQL, MongoDB, Couchbase, Redis, Elasticsearch</span>
+        <span class="skill-label">Infra</span>
+        <span class="skill-items">AWS, Linux, Docker, Nginx, GCP, Azure</span>
+        <span class="skill-label">Framework</span>
+        <span class="skill-items">Django, FastAPI, Laravel, Flask, Express</span>
+      </div>
+    </div>
+
+    <!-- ====== AI & Leadership ====== -->
+    <div class="section">
+      <div class="section-title">AI & Leadership</div>
+      <div class="skills-grid">
+        <span class="skill-label">AI</span>
+        <span class="skill-items" data-i18n="skill_ai">Claude Code 활용 풀스택 개발 — iOS, Android, Backend, Infra 1인 동시 개발</span>
+        <span class="skill-label">Management</span>
+        <span class="skill-items" data-i18n="skill_mgmt">최대 20명 규모 개발 조직 운영 경험, 현재 6명 팀 총괄 · 코드 리뷰, 아키텍처 의사결정, 채용</span>
+        <span class="skill-label">Architecture</span>
+        <span class="skill-items" data-i18n="skill_arch">모놀리스→마이크로서비스 전환, Python→Rust 마이그레이션 설계</span>
+      </div>
+    </div>
+
     <!-- ====== 자격증 ====== -->
     <div class="section">
       <div class="section-title">Certifications</div>
@@ -743,7 +936,54 @@
         // 헤더
         name: 'Munkyo Seo <span class="header-name-en">서문교</span>',
         title: 'DX Dev Team Lead · Butfit Seoul',
-        summary: 'I lead a team of 6 building services by day, and develop apps with AI after hours.',
+        summary: '<span class="lede">An engineer who defines the problem and builds it end to end — from hardware to servers.</span>I lead a team of 6 by day and ship apps with AI agents after hours.',
+        m1: '<b>20+ yrs</b><span>in software engineering</span>',
+        m2: '<b>20</b><span>engineers in the largest org I led</span>',
+        m3: '<b>14 branches</b><span>GateKeeper rollout underway</span>',
+        m4: '<b>3 apps</b><span>built solo, live on iOS</span>',
+
+        // 대표 성과
+        see_case: 'See case',
+        case_gk_period: 'Butfit Seoul · 2026.02 ~ Present',
+        case_gk_sub: 'In-house access control replacing third-party devices — hardware, firmware, server, and operations, designed and built myself',
+        case_gk_tags: '<li>Live at 2 branches</li><li>Sauna speed gate live (Oct 2026)</li><li>Rolling out: 33 units, 14 branches</li><li>612 unit tests</li>',
+        gk_f1: '<b>App QR</b>AES-256-GCM · 35s expiry',
+        gk_f2: '<b>Scanner</b>USB HID input',
+        gk_f3: '<b>ESP32-S3</b>Instant decision from PSRAM member cache',
+        gk_f4: '<b>Relay</b>Door lock · speed gate',
+        gk_f_note: '⇅ Server (Django API): roster sync every 60s · real-time re-check on cache miss · access event collection · OTA',
+        case_perf_title: 'Infrastructure & Performance',
+        case_perf_period: 'Butfit Seoul · 2025 ~ 2026',
+        case_perf_sub: 'Worked through slow APIs, high DB load, and growing monitoring costs, one bottleneck at a time',
+        case_perf_tags: '<li>Zero-downtime RDS → Aurora · no data loss</li><li>DB load 70% → 10%</li><li>Key API latency −60–84%</li><li>Datadog cost −58%</li>',
+        ch_title: 'Response time before/after Django caching',
+        ch_caption: 'Full bar = before, dark part = after',
+        ch_1: 'Place',
+        ch_2: 'Pass',
+        ch_3: 'Locker',
+        ch_4: 'Goal stats',
+        ch_5: 'Check-in dashboard',
+        pf_t1: 'Caching',
+        pf_d1: 'Picked bottlenecks from APM, slowest first, applied caching, and established a signal-based cache invalidation pattern. Kiosk check-in API: 105 queries / 372ms → about 50ms',
+        pf_t2: 'Database',
+        pf_d2: 'Query analysis, index optimization, and Couchbase caching took DB load from 70% to 10%',
+        pf_t3: 'Migration',
+        pf_d3: 'RDS → Aurora: rehearsed the day before, then cut over in 1h 45m overnight with no data loss. APM agent (ddtrace) issues were resolved ahead of the cutover',
+        pf_t4: 'Cost',
+        pf_d4: 'Trimmed Datadog logs, APM, and dev/staging agents: $1,134 → $475 per month (about $7,900 saved per year)',
+        case_trip_period: 'Personal project · 2025 ~ Present',
+        case_trip_sub: 'Location-based Korean heritage & travel app — an automated pipeline from collection to translation and delivery, run solo',
+        case_trip_tags: '<li>17,011 places</li><li>10 languages</li><li>Auto-deployed twice a day</li><li>Incremental patches 69MB → under 1MB</li>',
+        tp_f1: '<b>Collect</b>TourAPI · Odii',
+        tp_f2: '<b>Refine & translate</b>10 languages · audio guides',
+        tp_f3: '<b>Export</b>SQLite + incremental patches',
+        tp_f4: '<b>Deliver</b>S3 + CloudFront → app',
+        tp_t1: 'Challenge',
+        tp_d1: 'Keep daily-changing public tourism data current in 10 languages, alone, without the burden of running servers',
+        tp_t2: 'Approach',
+        tp_d2: 'Replaced EC2 with static delivery on S3 + CloudFront. The app works offline from a bundled DB and only downloads incremental patches diffed row by row against the previous release',
+        tp_t3: 'Result',
+        tp_d3: 'Twice-daily pipeline completed every stage from Sep 10 to Sep 30, incremental patches 69MB → 68–658KB per release, passed the preliminary round of the 2026 Tourism Data Contest',
 
         // Skills
         skills_quote: 'Languages are just tools — what matters is what you can build.',
